@@ -129,6 +129,10 @@ public class KinematicObject : MonoBehaviour
             var count = body.Cast(move, contactFilter, hitBuffer, distance + shellRadius);
             for (var i = 0; i < count; i++)
             {
+                //remove shellDistance from actual move distance.
+                var modifiedDistance = hitBuffer[i].distance - shellRadius;
+                distance = modifiedDistance < distance ? modifiedDistance : distance;
+
                 var currentNormal = hitBuffer[i].normal;
 
                 //is this surface flat enough to land on?
@@ -146,29 +150,26 @@ public class KinematicObject : MonoBehaviour
                         groundNormal = currentNormal;
                         currentNormal.x = 0;
                     }
+
+                    //how much of our velocity aligns with surface normal?
+                    var projection = Vector2.Dot(velocity, currentNormal);
+                    if (projection < 0)
+                    {
+                        //slower velocity if moving against the normal (up a hill).
+                        velocity -= projection * currentNormal;
+                    }
                 }
                 else
                 {
                     if (Vector2.Dot(velocity, currentNormal) < 0)
                     {
                         velocity = Vector2.Reflect(velocity, currentNormal);
-                    } 
-                }
-
-                if (IsGrounded)
-                {
-                    //how much of our velocity aligns with surface normal?
-                    var projection = Vector2.Dot(velocity, currentNormal);
-                    if (projection < 0)
+                    }
+                    else 
                     {
-                        //slower velocity if moving against the normal (up a hill).
-                        velocity = velocity - projection * currentNormal;
+                        distance = move.magnitude;
                     }
                 }
-
-                //remove shellDistance from actual move distance.
-                var modifiedDistance = hitBuffer[i].distance - shellRadius;
-                distance = modifiedDistance < distance ? modifiedDistance : distance;
             }
 
             if (!HasFloor) 
