@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d31b62ec9d586a4e94389d9071559ca, type: 3}
-  m_Name: plat
+  m_Name: MovePlatform
   m_EditorClassIdentifier: 
   _serializedGraph: '{"type":"FlowCanvas.FlowScript","nodes":[{"eventName":{"_value":"EventToP1"},"target":{},"targets":{},"_position":{"x":261.6227,"y":380.8901},"$type":"FlowCanvas.Nodes.CustomEvent","$id":"0"},{"_position":{"x":569.0,"y":382.0},"$type":"FlowCanvas.Nodes.SwitchBool","$id":"1"},{"_simplexNode":{},"_inputPortValues":{"interpolation":{"$content":3,"$type":"ParadoxNotion.Animation.EaseType"}},"_position":{"x":762.0,"y":380.0},"$type":"FlowCanvas.Nodes.SimplexNodeWrapper`1[[FlowCanvas.Nodes.TweenPosition,
     ParadoxNotion, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]","$id":"2"},{"_simplexNode":{},"_position":{"x":946.0,"y":492.0},"$type":"FlowCanvas.Nodes.SimplexNodeWrapper`1[[FlowCanvas.Nodes.Wait,
@@ -55,6 +55,6 @@ MonoBehaviour:
     _version: 3.25
     _category: 
     _comments: 
-    _translation: {x: -30, y: -38}
-    _zoomFactor: 0.8825555
+    _translation: {x: 13, y: -160}
+    _zoomFactor: 1
   _haltSerialization: 0
