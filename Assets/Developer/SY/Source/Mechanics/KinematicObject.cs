@@ -31,6 +31,9 @@ public class KinematicObject : MonoBehaviour
     protected ContactFilter2D contactFilter;
     protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
 
+    protected Transform groundTransform;
+    protected Vector2 groundRelativePosition;
+
     protected const float minMoveDistance = 0.001f;
     protected const float shellRadius = 0.01f;
 
@@ -96,11 +99,7 @@ public class KinematicObject : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        //if already falling, fall faster than the jump speed, otherwise use normal gravity.
-        if (velocity.y < 0)
-            velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
-        else
-            velocity += Physics2D.gravity * Time.deltaTime;
+        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
 
         velocity.x = targetVelocity.x;
 
@@ -125,6 +124,7 @@ public class KinematicObject : MonoBehaviour
 
         if (distance > minMoveDistance)
         {
+            bool HasFloor = false;
             //check if we hit anything in current direction of travel
             var count = body.Cast(move, contactFilter, hitBuffer, distance + shellRadius);
             for (var i = 0; i < count; i++)
@@ -135,6 +135,11 @@ public class KinematicObject : MonoBehaviour
                 if (currentNormal.y > minGroundNormalY)
                 {
                     IsGrounded = true;
+                    groundTransform = hitBuffer[i].transform.gameObject.GetComponent<Transform>();
+                    groundRelativePosition = body.position - new Vector2(groundTransform.position.x, groundTransform.position.y);
+
+                    HasFloor = true;
+
                     // if moving up, change the groundNormal to new surface normal.
                     if (yMovement)
                     {
@@ -142,6 +147,7 @@ public class KinematicObject : MonoBehaviour
                         currentNormal.x = 0;
                     }
                 }
+
                 if (IsGrounded)
                 {
                     //how much of our velocity aligns with surface normal?
@@ -162,7 +168,23 @@ public class KinematicObject : MonoBehaviour
                 var modifiedDistance = hitBuffer[i].distance - shellRadius;
                 distance = modifiedDistance < distance ? modifiedDistance : distance;
             }
+
+            if (!HasFloor) 
+            {
+                groundTransform = null;
+            }
         }
-        body.position = body.position + move.normalized * distance;
+
+        Vector2 Movement = move.normalized * distance;
+        if (groundTransform is not null)
+        {          
+            Vector2 worldPosition = new Vector2(groundTransform.position.x, groundTransform.position.y) + groundRelativePosition;
+            body.position = worldPosition + Movement;
+            groundRelativePosition += Movement;
+        }
+        else
+        {
+            body.position = body.position + Movement;
+        } 
     }
 }
