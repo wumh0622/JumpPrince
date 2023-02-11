@@ -31,9 +31,13 @@ public class KinematicObject : MonoBehaviour
     protected ContactFilter2D contactFilter;
     protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
 
+    protected Transform groundTransform;
+    protected Vector2 groundRelativePosition;
+
     protected const float minMoveDistance = 0.001f;
     protected const float shellRadius = 0.01f;
 
+    protected const float groundFriction = 0.2f;
 
     /// <summary>
     /// Bounce the object's vertical velocity.
@@ -68,12 +72,6 @@ public class KinematicObject : MonoBehaviour
     protected virtual void OnEnable()
     {
         body = GetComponent<Rigidbody2D>();
-        body.isKinematic = true;
-    }
-
-    protected virtual void OnDisable()
-    {
-        body.isKinematic = false;
     }
 
     protected virtual void Start()
@@ -96,13 +94,14 @@ public class KinematicObject : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        //if already falling, fall faster than the jump speed, otherwise use normal gravity.
-        if (velocity.y < 0)
-            velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
-        else
-            velocity += Physics2D.gravity * Time.deltaTime;
+        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
 
-        velocity.x = targetVelocity.x;
+        if (IsGrounded)
+        {
+            velocity.x *= groundFriction;
+        }   
+        
+        velocity += targetVelocity;
 
         IsGrounded = false;
 
@@ -125,44 +124,70 @@ public class KinematicObject : MonoBehaviour
 
         if (distance > minMoveDistance)
         {
+            bool HasFloor = false;
             //check if we hit anything in current direction of travel
             var count = body.Cast(move, contactFilter, hitBuffer, distance + shellRadius);
             for (var i = 0; i < count; i++)
             {
+                //remove shellDistance from actual move distance.
+                var modifiedDistance = hitBuffer[i].distance - shellRadius;
+                distance = modifiedDistance < distance ? modifiedDistance : distance;
+
                 var currentNormal = hitBuffer[i].normal;
 
                 //is this surface flat enough to land on?
                 if (currentNormal.y > minGroundNormalY)
                 {
                     IsGrounded = true;
+                    groundTransform = hitBuffer[i].transform.gameObject.GetComponent<Transform>();
+                    groundRelativePosition = body.position - new Vector2(groundTransform.position.x, groundTransform.position.y);
+
+                    HasFloor = true;
+
                     // if moving up, change the groundNormal to new surface normal.
                     if (yMovement)
                     {
                         groundNormal = currentNormal;
                         currentNormal.x = 0;
                     }
-                }
-                if (IsGrounded)
-                {
+
                     //how much of our velocity aligns with surface normal?
                     var projection = Vector2.Dot(velocity, currentNormal);
                     if (projection < 0)
                     {
                         //slower velocity if moving against the normal (up a hill).
-                        velocity = velocity - projection * currentNormal;
+                        velocity -= projection * currentNormal;
                     }
                 }
                 else
                 {
-                    //We are airborne, but hit something, so cancel vertical up and horizontal velocity.
-                    velocity.x *= 0;
-                    velocity.y = Mathf.Min(velocity.y, 0);
+                    if (Vector2.Dot(velocity, currentNormal) < 0)
+                    {
+                        velocity = Vector2.Reflect(velocity, currentNormal);
+                    }
+                    else 
+                    {
+                        distance = move.magnitude;
+                    }
                 }
-                //remove shellDistance from actual move distance.
-                var modifiedDistance = hitBuffer[i].distance - shellRadius;
-                distance = modifiedDistance < distance ? modifiedDistance : distance;
+            }
+
+            if (!HasFloor) 
+            {
+                groundTransform = null;
             }
         }
-        body.position = body.position + move.normalized * distance;
+
+        Vector2 Movement = move.normalized * distance;
+        if (groundTransform is not null)
+        {          
+            Vector2 worldPosition = new Vector2(groundTransform.position.x, groundTransform.position.y) + groundRelativePosition;
+            body.position = worldPosition + Movement;
+            groundRelativePosition += Movement;
+        }
+        else
+        {
+            body.position += Movement;
+        } 
     }
 }
