@@ -37,6 +37,7 @@ public class KinematicObject : MonoBehaviour
     protected const float minMoveDistance = 0.001f;
     protected const float shellRadius = 0.01f;
 
+    protected const float groundFriction = 0.2f;
 
     /// <summary>
     /// Bounce the object's vertical velocity.
@@ -71,12 +72,6 @@ public class KinematicObject : MonoBehaviour
     protected virtual void OnEnable()
     {
         body = GetComponent<Rigidbody2D>();
-        body.isKinematic = true;
-    }
-
-    protected virtual void OnDisable()
-    {
-        body.isKinematic = false;
     }
 
     protected virtual void Start()
@@ -101,7 +96,12 @@ public class KinematicObject : MonoBehaviour
     {
         velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
 
-        velocity.x = targetVelocity.x;
+        if (IsGrounded)
+        {
+            velocity.x *= groundFriction;
+        }   
+        
+        velocity += targetVelocity;
 
         IsGrounded = false;
 
@@ -147,6 +147,13 @@ public class KinematicObject : MonoBehaviour
                         currentNormal.x = 0;
                     }
                 }
+                else
+                {
+                    if (Vector2.Dot(velocity, currentNormal) < 0)
+                    {
+                        velocity = Vector2.Reflect(velocity, currentNormal);
+                    } 
+                }
 
                 if (IsGrounded)
                 {
@@ -158,12 +165,7 @@ public class KinematicObject : MonoBehaviour
                         velocity = velocity - projection * currentNormal;
                     }
                 }
-                else
-                {
-                    //We are airborne, but hit something, so cancel vertical up and horizontal velocity.
-                    velocity.x *= 0;
-                    velocity.y = Mathf.Min(velocity.y, 0);
-                }
+
                 //remove shellDistance from actual move distance.
                 var modifiedDistance = hitBuffer[i].distance - shellRadius;
                 distance = modifiedDistance < distance ? modifiedDistance : distance;
@@ -184,7 +186,7 @@ public class KinematicObject : MonoBehaviour
         }
         else
         {
-            body.position = body.position + Movement;
+            body.position += Movement;
         } 
     }
 }

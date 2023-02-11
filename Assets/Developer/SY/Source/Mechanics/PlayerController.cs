@@ -8,20 +8,16 @@ using UnityEngine;
 
 public class PlayerController : KinematicObject
 {
-    public AudioClip jumpAudio;
-    public AudioClip respawnAudio;
-    public AudioClip ouchAudio;
-
     public float maxSpeed = 7;
 
     public float maxJumpForce = 10;
     public float minJumpForce = 3;
-    public float jumpForceAcceleration = 0.2f;
-    public float jumpForceAccumulator = 0;
+    public float inputJumpAcceleration = 0.2f;
+
+    private float inputJumpAccumulator = 0;
+    private float jumpDirection = 0;
 
     public JumpState jumpState = JumpState.Grounded;
-
-    private float lastDirection = 1;
 
     /*internal new*/
     public Collider2D collider2d;
@@ -41,8 +37,9 @@ public class PlayerController : KinematicObject
         collider2d = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         //animator = GetComponent<Animator>();
+        groundTransform = null;
 
-        jumpForceAccumulator = 0;
+        inputJumpAccumulator = 0;
     }
 
     protected override void Update()
@@ -56,25 +53,23 @@ public class PlayerController : KinematicObject
                     if (Input.GetButtonDown("Jump"))
                     {
                         jumpState = JumpState.PrepareToJump;
+                        jumpDirection = move.x > 0 ? 1 : (move.x < 0 ? -1 : 0);
                         move.x = 0;
                     }
-                    else 
+                    else
                     {
                         move.x = Input.GetAxis("Horizontal");
-                        if (move.x != 0)
-                        {
-                            lastDirection = move.x > 0 ? 1 : -1;
-                        }
                     }
                 }
                 else if (jumpState == JumpState.Charging && Input.GetButtonUp("Jump"))
                 {
                     jumpState = JumpState.StartToJump;
+                    move.x = jumpDirection;
                 }
             }
             else 
             {
-                move.x = lastDirection;
+                move.x = 0;
             }
         }
         else
@@ -91,14 +86,14 @@ public class PlayerController : KinematicObject
         switch (jumpState)
         {
             case JumpState.PrepareToJump:
-                jumpForceAccumulator = minJumpForce;
+                inputJumpAccumulator = minJumpForce;
                 jumpState = JumpState.Charging;
                 break;
             case JumpState.Charging:
-                jumpForceAccumulator += jumpForceAcceleration;
-                if (jumpForceAccumulator >= maxJumpForce) 
+                inputJumpAccumulator += inputJumpAcceleration;
+                if (inputJumpAccumulator >= maxJumpForce) 
                 {
-                    jumpForceAccumulator = maxJumpForce;
+                    inputJumpAccumulator = maxJumpForce;
                 }
                 break;
             case JumpState.StartToJump:
@@ -125,10 +120,13 @@ public class PlayerController : KinematicObject
 
     protected override void ComputeVelocity()
     {
-        if (jump && IsGrounded)
+        if (IsGrounded)
         {
-            velocity.y = jumpForceAccumulator;
-            jump = false;
+            if (jump)
+            {
+                velocity.y = inputJumpAccumulator;
+                jump = false;
+            }
         }
 
         if (move.x > 0.01f)

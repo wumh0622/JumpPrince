@@ -6,17 +6,10 @@ public class FloatComponent : MonoBehaviour
 {
     public float Range = 5;
 
-    protected Transform transform;
-
     protected float time;
 
     private Vector3 initialPosition;
 
-    // Start is called before the first frame update
-    void Awake()
-    {
-        transform = GetComponent<Transform>();
-    }
     void Start()
     {
         initialPosition = transform.position;
