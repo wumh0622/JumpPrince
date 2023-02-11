@@ -51,22 +51,25 @@ public class PlayerController : KinematicObject
         {
             if (IsGrounded)
             {
-                if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
+                if (jumpState == JumpState.Grounded)
                 {
-                    jumpState = JumpState.PrepareToJump;
-                    move.x = 0;
+                    if (Input.GetButtonDown("Jump"))
+                    {
+                        jumpState = JumpState.PrepareToJump;
+                        move.x = 0;
+                    }
+                    else 
+                    {
+                        move.x = Input.GetAxis("Horizontal");
+                        if (move.x != 0)
+                        {
+                            lastDirection = move.x > 0 ? 1 : -1;
+                        }
+                    }
                 }
                 else if (jumpState == JumpState.Charging && Input.GetButtonUp("Jump"))
                 {
-                    jumpState = JumpState.StartToJump;              
-                }
-                else
-                {
-                    move.x = Input.GetAxis("Horizontal");
-                    if (move.x != 0)
-                    {
-                        lastDirection = move.x > 0 ? 1 : -1;
-                    }
+                    jumpState = JumpState.StartToJump;
                 }
             }
             else 
