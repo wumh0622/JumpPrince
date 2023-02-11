@@ -37,8 +37,6 @@ public class KinematicObject : MonoBehaviour
     protected const float minMoveDistance = 0.001f;
     protected const float shellRadius = 0.01f;
 
-    protected const float groundFriction = 0.2f;
-
     /// <summary>
     /// Bounce the object's vertical velocity.
     /// </summary>
@@ -94,13 +92,7 @@ public class KinematicObject : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
-
-        if (IsGrounded)
-        {
-            velocity.x *= groundFriction;
-        }   
-        
+        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;   
         velocity += targetVelocity;
 
         IsGrounded = false;
@@ -111,14 +103,14 @@ public class KinematicObject : MonoBehaviour
 
         var move = moveAlongGround * deltaPosition.x;
 
-        PerformMovement(move, false);
+        PerformMovement(move);
 
         move = Vector2.up * deltaPosition.y;
 
-        PerformMovement(move, true);
+        PerformMovement(move);
     }
 
-    void PerformMovement(Vector2 move, bool yMovement)
+    void PerformMovement(Vector2 move)
     {
         var distance = move.magnitude;
 
@@ -144,20 +136,10 @@ public class KinematicObject : MonoBehaviour
 
                     HasFloor = true;
 
-                    // if moving up, change the groundNormal to new surface normal.
-                    if (yMovement)
-                    {
-                        groundNormal = currentNormal;
-                        currentNormal.x = 0;
-                    }
+                    groundNormal = currentNormal;
+                    currentNormal.x = 0;
 
-                    //how much of our velocity aligns with surface normal?
-                    var projection = Vector2.Dot(velocity, currentNormal);
-                    if (projection < 0)
-                    {
-                        //slower velocity if moving against the normal (up a hill).
-                        velocity -= projection * currentNormal;
-                    }
+                    velocity *= 0;
                 }
                 else
                 {
