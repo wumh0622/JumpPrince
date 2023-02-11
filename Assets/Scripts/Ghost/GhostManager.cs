@@ -9,11 +9,12 @@ public class GhostManager : Singleton<GhostManager>
 
     public Transform[] GhostHome;
 
-    public Transform[] target;
+    public List<Transform> target = new List<Transform>();
 
     public float StartDelayTime;
 
-    public float EachTimeDelayTime;
+    public float EachWaveDelayTime;
+    public float EachSpawnDelayTime;
 
     public int[] EachHomeGhostNum;
 
@@ -24,6 +25,8 @@ public class GhostManager : Singleton<GhostManager>
 
     Dictionary<Transform, int> targetMap = new Dictionary<Transform, int>();
 
+    Transform mousePos;
+
     private void Start()
     {
         foreach (var item in target)
@@ -33,28 +36,33 @@ public class GhostManager : Singleton<GhostManager>
         }
 
         StartGhostSpawnSequence();
+        mousePos = new GameObject().transform;
 
     }
 
-    private void GhostManager_OnGhostTargetDestoryEvent(GhostTarget target)
+    private void Update()
     {
-        targetMap.Remove(target.transform);
+        mousePos.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
+
+    private void GhostManager_OnGhostTargetDestoryEvent(GhostTarget ghostTarget)
+    {
+        targetMap.Remove(ghostTarget.transform);
+        target.Remove(ghostTarget.transform);
     }
 
     public void StartGhostSpawnSequence()
     {
-        Spawn();
+        SimpleTimerManager.instance.RunTimer(SpawnOne, EachSpawnDelayTime);
     }
 
     public void Spawn()
     {
-        SimpleTimerManager.instance.RunTimer(SpawnOne, EachTimeDelayTime);
-
         currentSpawnWaveIdx++;
 
         if (currentSpawnWaveIdx < EachHomeGhostNum.Length)
         {
-            SimpleTimerManager.instance.RunTimer(Spawn, EachTimeDelayTime);
+            SimpleTimerManager.instance.RunTimer(SpawnOne, EachWaveDelayTime);
         }
 
     }
@@ -73,10 +81,11 @@ public class GhostManager : Singleton<GhostManager>
 
         if (EachHomeGhostNum[currentSpawnWaveIdx] > currentSpawnTimeIdx)
         {
-            SimpleTimerManager.instance.RunTimer(SpawnOne, EachTimeDelayTime);
+            SimpleTimerManager.instance.RunTimer(SpawnOne, EachSpawnDelayTime);
         }
         else
         {
+            currentSpawnTimeIdx = 0;
             Spawn();
         }
 
@@ -84,7 +93,10 @@ public class GhostManager : Singleton<GhostManager>
 
     private void Ghost_OnGhostKillEvent(Ghost ghost)
     {
-        targetMap[ghost.target] = targetMap[ghost.target] - 1;
+        if(targetMap.ContainsKey(ghost.target))
+        {
+            targetMap[ghost.target] = targetMap[ghost.target] - 1;
+        }
     }
 
     public override bool ShouldDestoryOnLoad()
@@ -100,6 +112,12 @@ public class GhostManager : Singleton<GhostManager>
     public Transform SelectTarget(GameObject self)
     {
         List<SortTarget> selectList = new List<SortTarget>();
+
+        if(targetMap.Count == 0)
+        {
+            return mousePos;
+        }
+
         foreach (Transform item in targetMap.Keys)
         {
             if (targetMap[item] < maxGhostEachTarget)
@@ -114,11 +132,12 @@ public class GhostManager : Singleton<GhostManager>
         selectList.Sort((x, y) => x.Distance.CompareTo(y.Distance));
         if(selectList.Count > 0)
         {
+            targetMap[selectList[0].Target] = targetMap[selectList[0].Target] + 1;
             return selectList[0].Target;
         }
         else
         {
-            return target[Random.Range(0, target.Length)];
+            return target[Random.Range(0, target.Count)];
         }
 
 
