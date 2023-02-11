@@ -111,14 +111,14 @@ public class KinematicObject : MonoBehaviour
 
         var move = moveAlongGround * deltaPosition.x;
 
-        PerformMovement(move, false);
+        PerformMovement(move);
 
         move = Vector2.up * deltaPosition.y;
 
-        PerformMovement(move, true);
+        PerformMovement(move);
     }
 
-    void PerformMovement(Vector2 move, bool yMovement)
+    void PerformMovement(Vector2 move)
     {
         var distance = move.magnitude;
 
@@ -144,20 +144,10 @@ public class KinematicObject : MonoBehaviour
 
                     HasFloor = true;
 
-                    // if moving up, change the groundNormal to new surface normal.
-                    if (yMovement)
-                    {
-                        groundNormal = currentNormal;
-                        currentNormal.x = 0;
-                    }
+                    groundNormal = currentNormal;
+                    currentNormal.x = 0;
 
-                    //how much of our velocity aligns with surface normal?
-                    var projection = Vector2.Dot(velocity, currentNormal);
-                    if (projection < 0)
-                    {
-                        //slower velocity if moving against the normal (up a hill).
-                        velocity -= projection * currentNormal;
-                    }
+                    velocity *= 0;
                 }
                 else
                 {
