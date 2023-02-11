@@ -10,8 +10,20 @@ public class BuildTool
     [MenuItem("Build/Build All")]
     public static void BuildAll()
     {
-        BuildExe();
-        BuildMac();
+        if(EditorPrefs.GetBool("BuildWindows"))
+        {
+            BuildExe();
+        }
+
+        if (EditorPrefs.GetBool("BuildMac"))
+        {
+            BuildMac();
+        }
+
+        if (EditorPrefs.GetBool("BuildWeb"))
+        {
+            BuildWeb();
+        }
     }
 
     [MenuItem("Build/Build Test Windows")]
@@ -39,7 +51,7 @@ public class BuildTool
         string fileName = "ProjectLab_"  + (isDev ? "DevBuild" : "Shipping") + "_Windows" + "_" + PlayerSettings.bundleVersion;
 
         opt.scenes = allScenePath;
-        opt.locationPathName = Application.dataPath + "/../Bin/" + fileName + "/ProjectLab.exe";
+        opt.locationPathName = Application.dataPath + "/../Bin/" + fileName + "/JumpPrince.exe";
         opt.target = BuildTarget.StandaloneWindows;
         if(isDev)
         {
@@ -78,7 +90,7 @@ public class BuildTool
         string fileName = "ProjectLab_" + (isDev ? "DevBuild" : "Shipping") + "_Mac" + "_" + PlayerSettings.bundleVersion;
 
         opt.scenes = allScenePath;
-        opt.locationPathName = Application.dataPath + "/../Bin/" + fileName + "/ProjectLab";
+        opt.locationPathName = Application.dataPath + "/../Bin/" + fileName + "/JumpPrince";
         opt.target = BuildTarget.StandaloneOSX;
         if (isDev)
         {
@@ -118,7 +130,7 @@ public class BuildTool
         string fileName = "ProjectLab_" + (isDev ? "DevBuild" : "Shipping") + "_WebGL" + "_" + PlayerSettings.bundleVersion;
 
         opt.scenes = allScenePath;
-        opt.locationPathName = Application.dataPath + "/../Bin/" + fileName + "/ProjectLab";
+        opt.locationPathName = Application.dataPath + "/../Bin/" + fileName + "/JumpPrince";
         opt.target = BuildTarget.WebGL;
         if (isDev)
         {
