@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: CanvasLayer
+    uniqueID: 635329149
+    locked: 0
