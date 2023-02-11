@@ -12,6 +12,10 @@ public class GhostTarget : MonoBehaviour
 
     public Transform target;
 
+    public delegate void OnGhostTargetDestory(GhostTarget target);
+    public event OnGhostTargetDestory OnGhostTargetDestoryEvent;
+
+
     new Rigidbody2D rigidbody2D;
 
     float rightVelocity;
@@ -27,24 +31,26 @@ public class GhostTarget : MonoBehaviour
     {
         if (!target || !startMove)
         {
+            rigidbody2D.velocity = Vector2.zero;
             return;
         }
 
-        if (Vector2.Distance(target.position, transform.position) > 0)
+        if (Vector2.Distance(target.position, transform.position) > 0.1f)
         {
-            upVelocity = -Vector2.Dot(Vector2.up, (transform.position - target.position).normalized) * Speed * Time.deltaTime;
-            rightVelocity = -Vector2.Dot(Vector2.right, (transform.position - target.position).normalized) * Speed * Time.deltaTime;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(rightVelocity, upVelocity);
+            rigidbody2D.velocity = -(transform.position - target.position).normalized * Speed;
         }
         else
         {
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            EndMove();
+            TargetDestory();
+            //GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
 
     public void StartMove()
     {
         startMove = true;
+        target = GhostManager.instance.SelectHome(gameObject);
     }
 
     public void EndMove()
@@ -56,7 +62,7 @@ public class GhostTarget : MonoBehaviour
     {
         ghost.OnGhostKillEvent += Ghost_OnGhostKillEvent;
         GhostCount++;
-        if(GhostCount >= NeedGhost)
+        if(GhostCount >= NeedGhost && !startMove)
         {
             StartMove();
         }
@@ -70,6 +76,12 @@ public class GhostTarget : MonoBehaviour
         {
             EndMove();
         }
+    }
+
+    public void TargetDestory()
+    {
+        OnGhostTargetDestoryEvent?.Invoke(this);
+        Destroy(gameObject);
     }
 
 }

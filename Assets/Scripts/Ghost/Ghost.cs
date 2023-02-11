@@ -49,6 +49,8 @@ public class Ghost : MonoBehaviour
         }
         else if(!isGetTarget)
         {
+            GhostTarget ghostTarget = target.GetComponent<GhostTarget>();
+            ghostTarget.AddGhost(this);
             isGetTarget = true;
             rigidbody2D.velocity = Vector2.zero;
             posOffset = transform.position - target.position;
