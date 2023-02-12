@@ -147,7 +147,7 @@ public class KinematicObject : MonoBehaviour
                 }
                 else
                 {
-                    if (Vector2.Dot(velocity, currentNormal) < 0)
+                    if (Vector2.Dot(velocity, currentNormal) <= 0)
                     {
                         velocity = Vector2.Reflect(velocity, currentNormal);
                     }
@@ -161,6 +161,7 @@ public class KinematicObject : MonoBehaviour
             if (!HasFloor) 
             {
                 groundTransform = null;
+                groundNormal = Vector2.up;
             }
         }
 
