@@ -6,6 +6,7 @@ using CarterGames.Assets.AudioManager;
 public partial class Effect_BlockV4 : PPEffectBase
 {
     [SerializeField] private string audioEffect;
+    [SerializeField] private string openMusicID;
     [SerializeField] private float m_FadeTime = 0;
     [SerializeField] private float m_StartValue = 0;
     [SerializeField] private float m_EndValue = 0;
@@ -23,6 +24,7 @@ public partial class Effect_BlockV4 : PPEffectBase
     public override void StartModify()
     {
         base.StartModify();
+        AudioManager.instance.StopBGMusic(openMusicID);
         audio = AudioManager.instance.PlayAndGetSource(audioEffect);
         mCacheTweener = DoTweenExtension.DT_To(m_StartValue, m_EndValue, m_FadeTime, (float iValue) =>
         {

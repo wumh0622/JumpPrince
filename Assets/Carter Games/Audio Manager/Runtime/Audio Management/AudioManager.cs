@@ -1758,9 +1758,8 @@ namespace CarterGames.Assets.AudioManager
         Dictionary<string, AudioSource> bgMap = new Dictionary<string, AudioSource>();
         public void PlayBGMusic(float fadeTime, string id)
         {
-            AudioSource audio = PlayAndGetSource(id);
+            AudioSource audio = PlayAndGetSource(id, 1, 0.0f, 1.0f);
             audio.loop = true;
-            audio.volume = 0.0f;
             DOTween.To(() => audio.volume, x => audio.volume = x, 1.0f, fadeTime);
             bgMap.Add(id, audio);
         }

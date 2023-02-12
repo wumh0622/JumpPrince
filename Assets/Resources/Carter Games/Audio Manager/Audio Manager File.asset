@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tabPos: 0
   audioMixer:
-  - {fileID: 24300002, guid: 553bcb559900ec04498a56023a25f768, type: 2}
+  - {fileID: -1390690117165213809, guid: 553bcb559900ec04498a56023a25f768, type: 2}
+  - {fileID: -6372452815550412777, guid: 553bcb559900ec04498a56023a25f768, type: 2}
   soundPrefab: {fileID: 322064603624763291, guid: f97cb5ab9dca8bd488116e0ffc057e10, type: 3}
   isPopulated: 1
   directory:

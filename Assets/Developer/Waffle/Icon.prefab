@@ -103,6 +103,8 @@ MonoBehaviour:
   GhostCount: 0
   Speed: 2
   target: {fileID: 0}
+  normal: {fileID: 21300000, guid: d761be7e7b2525643830f164ca0cfb4d, type: 3}
+  toxic: {fileID: 21300000, guid: 2131c0a2f3ead7449bd32dd360f0d27a, type: 3}
 --- !u!50 &1583049976864520722
 Rigidbody2D:
   serializedVersion: 4
