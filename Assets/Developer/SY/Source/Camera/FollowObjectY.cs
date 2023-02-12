@@ -6,6 +6,7 @@ public class FollowObjectY : MonoBehaviour
 {
     private Transform selfTransform;
 
+    public float offsetY = 0;
     public GameObject obj;
     private Transform objTransform;
 
@@ -17,7 +18,7 @@ public class FollowObjectY : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        selfTransform.position = new Vector3(selfTransform.position.x, objTransform.position.y, selfTransform.position.z); 
+    {    
+        selfTransform.position = new Vector3(selfTransform.position.x, objTransform.position.y + offsetY, selfTransform.position.z); 
     }
 }
