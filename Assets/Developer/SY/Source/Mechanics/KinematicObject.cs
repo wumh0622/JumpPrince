@@ -92,6 +92,11 @@ public class KinematicObject : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+        if (groundTransform is not null)
+        {
+            body.position = new Vector2(groundTransform.position.x, groundTransform.position.y) + groundRelativePosition;
+        }
+
         velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;   
         velocity += targetVelocity;
 
@@ -129,10 +134,9 @@ public class KinematicObject : MonoBehaviour
 
                 //is this surface flat enough to land on?
                 if (currentNormal.y > minGroundNormalY)
-                {
+                {                    
                     IsGrounded = true;
-                    groundTransform = hitBuffer[i].transform.gameObject.GetComponent<Transform>();
-                    groundRelativePosition = body.position - new Vector2(groundTransform.position.x, groundTransform.position.y);
+                    groundTransform = hitBuffer[i].transform.gameObject.GetComponent<Transform>();              
 
                     HasFloor = true;
 
@@ -160,16 +164,10 @@ public class KinematicObject : MonoBehaviour
             }
         }
 
-        Vector2 Movement = move.normalized * distance;
+        body.position += move.normalized * distance;
         if (groundTransform is not null)
-        {          
-            Vector2 worldPosition = new Vector2(groundTransform.position.x, groundTransform.position.y) + groundRelativePosition;
-            body.position = worldPosition + Movement;
-            groundRelativePosition += Movement;
+        {      
+            groundRelativePosition = body.position - new Vector2(groundTransform.position.x, groundTransform.position.y);
         }
-        else
-        {
-            body.position += Movement;
-        } 
     }
 }
