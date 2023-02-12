@@ -37,7 +37,7 @@ public class DragAll : MonoBehaviour
 
         if (m_DragObj != null)
         {
-            m_DragObj.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + m_CacheOffset;
+            m_DragObj.position = m_CacheCamera.ScreenToWorldPoint(Input.mousePosition) + m_CacheOffset;
         }
     }
 }
