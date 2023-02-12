@@ -179,6 +179,10 @@ public class PlayerController : KinematicObject
             jumpState = JumpState.Grounded;
         }
     }
+    void PlayWalkAudio()
+    {
+        AudioManager.instance.Play(audioWalk);
+    }
 
     public enum JumpState
     {
