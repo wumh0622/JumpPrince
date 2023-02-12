@@ -13,6 +13,7 @@ public class Stage1Monster : MonoBehaviour
     private AudioSource MonsterAudio;
     private GameObject player;
     private bool onAtk = false;
+    private bool playerDie = false;
 
     [SerializeField] public AudioClip scareAudio;
     [SerializeField] public AudioClip showupAudio;
@@ -47,7 +48,7 @@ public class Stage1Monster : MonoBehaviour
     private void FixedUpdate()
     {
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, targetY, transform.position.z), movingPower * Time.deltaTime);
-        if (!onAtk)
+        if (!onAtk && !playerDie)
         {
             if (Time.time > moveTime)
             {
@@ -58,10 +59,11 @@ public class Stage1Monster : MonoBehaviour
         }
     }
 
-    public void ResetPosition()
+    public void ResetPositionAndState()
     {
         targetY = originTargetY;
         transform.position = originPosition;
+        playerDie = false;
     }
     public void MonsterMoveUp()
     {
@@ -105,6 +107,7 @@ public class Stage1Monster : MonoBehaviour
     {
         if (player.transform.position.y - transform.position.y < atkRange)
         {
+            playerDie = true;
             //player die
         }
     }
