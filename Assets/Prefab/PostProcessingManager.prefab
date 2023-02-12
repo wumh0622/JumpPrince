@@ -277,7 +277,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_KeepTime: -1
   mErrorObj: {fileID: 0}
-  openMusicID: Soaring WITH SOLO
 --- !u!1 &7896498458474382721
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +340,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_KeepTime: 3.5
-  audioEffect: 
+  audioEffect: ELECTRICITY_Fuzzy_Spikey_loop_mono
+  openMusicID: Soaring WITH SOLO
   m_FadeTime: 2
   m_StartValue: 1
   m_EndValue: 8

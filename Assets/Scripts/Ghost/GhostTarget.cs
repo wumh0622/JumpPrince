@@ -57,7 +57,11 @@ public class GhostTarget : MonoBehaviour
 
     public void EndMove()
     {
-        collider.isTrigger = false;
+        if(collider)
+        {
+            collider.isTrigger = false;
+        }
+
         startMove = false;
     }
 
