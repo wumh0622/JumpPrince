@@ -207,6 +207,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_KeepTime: 0.5
   m_MaskObj: {fileID: 0}
+  cameraLocate: {fileID: 0}
+  objectToDestory:
+  - {fileID: 0}
+  - {fileID: 0}
+  objectToActive:
+  - {fileID: 0}
 --- !u!1 &7896498458412194682
 GameObject:
   m_ObjectHideFlags: 0
