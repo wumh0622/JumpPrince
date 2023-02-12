@@ -116,6 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_KeepTime: -1
   mErrorObj: {fileID: 0}
+  openMusicID: Soaring WITH SOLO
 --- !u!1 &7896498458474382721
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +285,7 @@ MonoBehaviour:
   m_FadeTime: 1
   m_StartValue: 5
   m_EndValue: 0
+  stage2Music: Murky Dungeon LOOP
 --- !u!1 &7896498459489111056
 GameObject:
   m_ObjectHideFlags: 0
