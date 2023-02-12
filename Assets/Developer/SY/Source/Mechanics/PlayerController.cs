@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CarterGames.Assets.AudioManager;
 //using Platformer.Gameplay;
 //using static Platformer.Core.Simulation;
 //using Platformer.Model;
@@ -12,6 +13,7 @@ public class PlayerController : KinematicObject
 
     public float maxJumpForce = 10;
     public float minJumpForce = 3;
+    public float jumpHorizonalScale = 0.5f;
     public float inputJumpAcceleration = 0.2f;
 
     public float landTime = 0.5f;
@@ -23,6 +25,10 @@ public class PlayerController : KinematicObject
 
     public bool controlEnabled = true;
 
+    //Audio
+    public string audioLand;
+    public string audioJump;
+    public string audioWalk;
     public AnimatorOverrideController FaceLeftAnimator;
     RuntimeAnimatorController FaceRightAnimator;
 
@@ -114,6 +120,7 @@ public class PlayerController : KinematicObject
             case JumpState.Charging:
                 break;
             case JumpState.StartToJump:
+                AudioManager.instance.Play(audioJump);
                 jumpState = JumpState.Jumping;
                 jump = true;
                 break;
@@ -130,6 +137,8 @@ public class PlayerController : KinematicObject
                 }
                 break;
             case JumpState.Landed:
+                jumpState = JumpState.Grounded;
+                AudioManager.instance.Play(audioLand);
                 StartCoroutine(WaitForLanding());
                 break;
         }
@@ -141,7 +150,7 @@ public class PlayerController : KinematicObject
         {
             if (jump)
             {
-                velocity = new Vector2(inputJumpAccumulator * jumpDirection, inputJumpAccumulator);
+                velocity = new Vector2(inputJumpAccumulator * jumpDirection * jumpHorizonalScale, inputJumpAccumulator);
                 jump = false;
             }
         }
@@ -165,7 +174,10 @@ public class PlayerController : KinematicObject
 
         yield return new WaitForSeconds(landTime);
 
-        jumpState = JumpState.Grounded;
+        if (jumpState == JumpState.InFlight)
+        {
+            jumpState = JumpState.Grounded;
+        }
     }
 
     public enum JumpState

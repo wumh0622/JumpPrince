@@ -1,9 +1,11 @@
 using UnityEngine;
 using XPostProcessing;
 using DG.Tweening;
+using CarterGames.Assets.AudioManager;
 
 public partial class Effect_BlockV4 : PPEffectBase
 {
+    [SerializeField] private string audioEffect;
     [SerializeField] private float m_FadeTime = 0;
     [SerializeField] private float m_StartValue = 0;
     [SerializeField] private float m_EndValue = 0;
@@ -11,6 +13,7 @@ public partial class Effect_BlockV4 : PPEffectBase
     private GlitchImageBlockV4 m_BlockV4 = null;
     private Tweener mCacheTweener = null;
 
+    new AudioSource audio;
     public override void Init()
     {
         base.Init();
@@ -20,6 +23,7 @@ public partial class Effect_BlockV4 : PPEffectBase
     public override void StartModify()
     {
         base.StartModify();
+        audio = AudioManager.instance.PlayAndGetSource(audioEffect);
         mCacheTweener = DoTweenExtension.DT_To(m_StartValue, m_EndValue, m_FadeTime, (float iValue) =>
         {
             m_BlockV4.MaxRGBSplitX.value = iValue;
@@ -28,6 +32,7 @@ public partial class Effect_BlockV4 : PPEffectBase
     }
     public override void Finish()
     {
+        audio.Stop();
         mCacheTweener.KillTweener();
         base.Finish();
     }
