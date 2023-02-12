@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CarterGames.Assets.AudioManager;
 //using Platformer.Gameplay;
 //using static Platformer.Core.Simulation;
 //using Platformer.Model;
@@ -23,6 +24,10 @@ public class PlayerController : KinematicObject
 
     public bool controlEnabled = true;
 
+    //Audio
+    public string audioLand;
+    public string audioJump;
+    public string audioWalk;
     public AnimatorOverrideController FaceLeftAnimator;
     RuntimeAnimatorController FaceRightAnimator;
 
@@ -114,6 +119,7 @@ public class PlayerController : KinematicObject
             case JumpState.Charging:
                 break;
             case JumpState.StartToJump:
+                AudioManager.instance.Play(audioJump);
                 jumpState = JumpState.Jumping;
                 jump = true;
                 break;
@@ -130,6 +136,8 @@ public class PlayerController : KinematicObject
                 }
                 break;
             case JumpState.Landed:
+                jumpState = JumpState.Grounded;
+                AudioManager.instance.Play(audioLand);
                 StartCoroutine(WaitForLanding());
                 break;
         }
