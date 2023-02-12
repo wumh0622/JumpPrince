@@ -64,7 +64,6 @@ public class PlayerController : KinematicObject
                 else if (jumpState == JumpState.Charging && Input.GetButtonUp("Jump"))
                 {
                     jumpState = JumpState.StartToJump;
-                    move.x = jumpDirection;
                 }
             }
             else 
@@ -124,7 +123,7 @@ public class PlayerController : KinematicObject
         {
             if (jump)
             {
-                velocity.y = inputJumpAccumulator;
+                velocity = new Vector2(inputJumpAccumulator * jumpDirection, inputJumpAccumulator);
                 jump = false;
             }
         }
@@ -139,7 +138,7 @@ public class PlayerController : KinematicObject
         }
 
         //animator.SetBool("grounded", IsGrounded);
-        //animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
+        //animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed); 
 
         targetVelocity = move * maxSpeed;
     }

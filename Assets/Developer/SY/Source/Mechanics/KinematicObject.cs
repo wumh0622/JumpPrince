@@ -37,8 +37,6 @@ public class KinematicObject : MonoBehaviour
     protected const float minMoveDistance = 0.001f;
     protected const float shellRadius = 0.01f;
 
-    protected const float groundFriction = 0.2f;
-
     /// <summary>
     /// Bounce the object's vertical velocity.
     /// </summary>
@@ -94,13 +92,7 @@ public class KinematicObject : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
-
-        if (IsGrounded)
-        {
-            velocity.x *= groundFriction;
-        }   
-        
+        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;   
         velocity += targetVelocity;
 
         IsGrounded = false;
