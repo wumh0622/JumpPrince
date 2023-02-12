@@ -14,36 +14,40 @@ public class PlayerController : KinematicObject
     public float minJumpForce = 3;
     public float inputJumpAcceleration = 0.2f;
 
+    public float landTime = 0.5f;
+
     private float inputJumpAccumulator = 0;
     private float jumpDirection = 0;
 
     public JumpState jumpState = JumpState.Grounded;
 
-    /*internal new*/
-    public Collider2D collider2d;
-    //public Health health;
     public bool controlEnabled = true;
+
+    public AnimatorOverrideController FaceLeftAnimator;
+    RuntimeAnimatorController FaceRightAnimator;
 
     bool jump;
     Vector2 move;
-    SpriteRenderer spriteRenderer;
-    //internal Animator animator;
-    //readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
-    public Bounds Bounds => collider2d.bounds;
+    Collider2D collider2d;
+    SpriteRenderer spriteRenderer;
+    Animator animator;
 
     void Awake()
     {
         collider2d = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         groundTransform = null;
+        jumpState = JumpState.Grounded;
 
-        inputJumpAccumulator = 0;
+        FaceRightAnimator = animator.runtimeAnimatorController;
     }
 
     protected override void Update()
     {
+        move.x = 0;
+
         if (controlEnabled)
         {
             if (IsGrounded)
@@ -52,31 +56,54 @@ public class PlayerController : KinematicObject
                 {
                     if (Input.GetButtonDown("Jump"))
                     {
-                        jumpState = JumpState.PrepareToJump;
-                        jumpDirection = move.x > 0 ? 1 : (move.x < 0 ? -1 : 0);
-                        move.x = 0;
+                        jumpState = JumpState.Charging;
+                        inputJumpAccumulator = minJumpForce;
+
+                        animator.SetInteger("JumpState", 1);
                     }
                     else
                     {
                         move.x = Input.GetAxis("Horizontal");
+                        jumpDirection = move.x > 0 ? 1 : (move.x < 0 ? -1 : 0);
                     }
                 }
                 else if (jumpState == JumpState.Charging && Input.GetButtonUp("Jump"))
                 {
                     jumpState = JumpState.StartToJump;
+                    animator.SetInteger("JumpState", 2);
                 }
             }
-            else 
+            else
             {
-                move.x = 0;
+                jumpState = JumpState.InFlight;
+
+                if (velocity.y > 0)
+                {
+                    animator.SetInteger("JumpState", 2);
+                }
+                else 
+                {
+                    animator.SetInteger("JumpState", 3);
+                }
             }
         }
-        else
-        {
-            move.x = 0;
-        }
+
         UpdateJumpState();
         base.Update();
+    }
+
+    protected override void FixedUpdate()
+    {
+        if (jumpState == JumpState.Charging)
+        {
+            inputJumpAccumulator += inputJumpAcceleration;
+            if (inputJumpAccumulator >= maxJumpForce)
+            {
+                inputJumpAccumulator = maxJumpForce;
+            }
+        }
+
+        base.FixedUpdate();
     }
 
     void UpdateJumpState()
@@ -84,16 +111,7 @@ public class PlayerController : KinematicObject
         jump = false;
         switch (jumpState)
         {
-            case JumpState.PrepareToJump:
-                inputJumpAccumulator = minJumpForce;
-                jumpState = JumpState.Charging;
-                break;
             case JumpState.Charging:
-                inputJumpAccumulator += inputJumpAcceleration;
-                if (inputJumpAccumulator >= maxJumpForce) 
-                {
-                    inputJumpAccumulator = maxJumpForce;
-                }
                 break;
             case JumpState.StartToJump:
                 jumpState = JumpState.Jumping;
@@ -112,7 +130,7 @@ public class PlayerController : KinematicObject
                 }
                 break;
             case JumpState.Landed:
-                jumpState = JumpState.Grounded;
+                StartCoroutine(WaitForLanding());
                 break;
         }
     }
@@ -128,25 +146,31 @@ public class PlayerController : KinematicObject
             }
         }
 
-        if (move.x > 0.01f)
-        {
-            spriteRenderer.flipX = false;
-        }
-        else if (move.x < -0.01f)
-        {
-            spriteRenderer.flipX = true;
-        }
-
-        //animator.SetBool("grounded", IsGrounded);
-        //animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed); 
+        animator.SetBool("IsMoving", Mathf.Abs(move.x) > 0.001f);
 
         targetVelocity = move * maxSpeed;
+
+        if (velocity.x > 0.01f || targetVelocity.x > 0.01f)
+        {
+            animator.runtimeAnimatorController = FaceRightAnimator;
+        }
+        else if (velocity.x < -0.01f || targetVelocity.x < -0.01f)
+        {
+            animator.runtimeAnimatorController = FaceLeftAnimator;
+        }
+    }
+    IEnumerator WaitForLanding()
+    {
+        animator.SetInteger("JumpState", 0);
+
+        yield return new WaitForSeconds(landTime);
+
+        jumpState = JumpState.Grounded;
     }
 
     public enum JumpState
     {
         Grounded,
-        PrepareToJump,
         Charging,
         StartToJump,
         Jumping,
