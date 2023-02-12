@@ -29,6 +29,7 @@ using UnityEngine.Audio;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
+using DG.Tweening;
 
 namespace CarterGames.Assets.AudioManager
 {
@@ -1753,5 +1754,25 @@ namespace CarterGames.Assets.AudioManager
 
             return source;
         }
-    }
+
+        Dictionary<string, AudioSource> bgMap = new Dictionary<string, AudioSource>();
+        public void PlayBGMusic(float fadeTime, string id)
+        {
+            AudioSource audio = PlayAndGetSource(id);
+            audio.loop = true;
+            audio.volume = 0.0f;
+            DOTween.To(() => audio.volume, x => audio.volume = x, 1.0f, fadeTime);
+            bgMap.Add(id, audio);
+        }
+
+        public void StopBGMusic(string id)
+        {
+            if (bgMap.ContainsKey(id))
+            {
+                bgMap[id].Stop();
+                Destroy(bgMap[id].gameObject);
+                bgMap.Remove(id);
+            }
+            }
+        }
 }
