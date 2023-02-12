@@ -59,6 +59,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Icon Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1583049976864521199, guid: 84b22def8ea2715438da0f702a90492c, type: 3}
+      propertyPath: toxic
+      value: 
+      objectReference: {fileID: 21300000, guid: 18a0842a4917d084ea58a0d8f13a4c8c, type: 3}
+    - target: {fileID: 1583049976864521199, guid: 84b22def8ea2715438da0f702a90492c, type: 3}
+      propertyPath: normal
+      value: 
+      objectReference: {fileID: 21300000, guid: 438f40b1495aefe4495d69d7aabd2ebd, type: 3}
     - target: {fileID: 4219904498179387131, guid: 84b22def8ea2715438da0f702a90492c, type: 3}
       propertyPath: m_Size.x
       value: 0.9870291

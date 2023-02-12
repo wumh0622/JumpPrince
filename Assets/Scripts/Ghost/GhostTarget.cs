@@ -15,17 +15,23 @@ public class GhostTarget : MonoBehaviour
     public delegate void OnGhostTargetDestory(GhostTarget target);
     public event OnGhostTargetDestory OnGhostTargetDestoryEvent;
 
+    public Sprite normal;
+    public Sprite toxic;
+
     new Rigidbody2D rigidbody2D;
     new Collider2D collider;
     float rightVelocity;
     float upVelocity;
     bool startMove;
+    SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         gameObject.tag = "Dragable";
         rigidbody2D = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = normal;
     }
 
     private void Update()
@@ -72,6 +78,7 @@ public class GhostTarget : MonoBehaviour
         gameObject.tag = "Untagged";
         if (GhostCount >= NeedGhost && !startMove)
         {
+            spriteRenderer.sprite = toxic;
             StartMove();
         }
     }
@@ -82,6 +89,11 @@ public class GhostTarget : MonoBehaviour
         GhostCount--;
         if(GhostCount < NeedGhost)
         {
+            if(spriteRenderer)
+            {
+                spriteRenderer.sprite = normal;
+            }
+
             EndMove();
         }
         if(GhostCount == 0)

@@ -26,7 +26,7 @@ public class Ghost : MonoBehaviour
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        GetComponentInChildren<SpriteRenderer>().color = new Color(Random.value, Random.value, Random.value);
+        //GetComponentInChildren<SpriteRenderer>().color = new Color(Random.value, Random.value, Random.value);
     }
 
     public void SetTarget(Transform setTarget)

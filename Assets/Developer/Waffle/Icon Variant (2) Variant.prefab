@@ -7,9 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4688772021239039596, guid: 583f323feebdb334985ab6c05c9fd236, type: 3}
+      propertyPath: toxic
+      value: 
+      objectReference: {fileID: 21300000, guid: 3c38a652fd20a1a4684136bb1734be07, type: 3}
+    - target: {fileID: 4688772021239039596, guid: 583f323feebdb334985ab6c05c9fd236, type: 3}
+      propertyPath: normal
+      value: 
+      objectReference: {fileID: 21300000, guid: 60a5f490e26bd4848a5d164ee4e6a746, type: 3}
     - target: {fileID: 4688772021239039597, guid: 583f323feebdb334985ab6c05c9fd236, type: 3}
       propertyPath: m_Name
-      value: Icon Variant (2)
+      value: Icon Variant (2) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4688772021239039598, guid: 583f323feebdb334985ab6c05c9fd236, type: 3}
       propertyPath: m_RootOrder
