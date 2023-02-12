@@ -15,16 +15,17 @@ public class GhostTarget : MonoBehaviour
     public delegate void OnGhostTargetDestory(GhostTarget target);
     public event OnGhostTargetDestory OnGhostTargetDestoryEvent;
 
-
     new Rigidbody2D rigidbody2D;
-
+    new Collider2D collider;
     float rightVelocity;
     float upVelocity;
     bool startMove;
 
     private void Awake()
     {
+        gameObject.tag = "Dragable";
         rigidbody2D = GetComponent<Rigidbody2D>();
+        collider = GetComponent<Collider2D>();
     }
 
     private void Update()
@@ -49,12 +50,14 @@ public class GhostTarget : MonoBehaviour
 
     public void StartMove()
     {
+        collider.isTrigger = true;
         startMove = true;
         target = GhostManager.instance.SelectHome(gameObject);
     }
 
     public void EndMove()
     {
+        collider.isTrigger = false;
         startMove = false;
     }
 
@@ -62,7 +65,8 @@ public class GhostTarget : MonoBehaviour
     {
         ghost.OnGhostKillEvent += Ghost_OnGhostKillEvent;
         GhostCount++;
-        if(GhostCount >= NeedGhost && !startMove)
+        gameObject.tag = "Untagged";
+        if (GhostCount >= NeedGhost && !startMove)
         {
             StartMove();
         }
@@ -75,6 +79,10 @@ public class GhostTarget : MonoBehaviour
         if(GhostCount < NeedGhost)
         {
             EndMove();
+        }
+        if(GhostCount == 0)
+        {
+            gameObject.tag = "Dragable";
         }
     }
 

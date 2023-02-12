@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ae0c8eafd7263429865ae0f6fe29e6, type: 3}
+  m_Name: Audio Manager File
+  m_EditorClassIdentifier: 
+  tabPos: 0
+  audioMixer:
+  - {fileID: 24300002, guid: 553bcb559900ec04498a56023a25f768, type: 2}
+  soundPrefab: {fileID: 322064603624763291, guid: f97cb5ab9dca8bd488116e0ffc057e10, type: 3}
+  isPopulated: 1
+  directory:
+  - Assets/Audio/UseAudio
+  library:
+  - key: Bandits LOOP
+    value: {fileID: 8300000, guid: a52ae605edb194ee095632b0e09532dc, type: 3}
+  - key: Cracking
+    value: {fileID: 8300000, guid: 60fd8ed651e7e4543ad45c23b9518bb0, type: 3}
+  - key: ELECTRICITY_Fuzzy_Spikey_loop_mono
+    value: {fileID: 8300000, guid: ba9f0a1e93537be4385daf53f847186b, type: 3}
+  - key: Jump_Land
+    value: {fileID: 8300000, guid: c2e0d3f88cb48f240af40a1f1bac7e8c, type: 3}
+  - key: Jump_Start
+    value: {fileID: 8300000, guid: 8420cf17e21d6354a98e6ef6d19dc9cc, type: 3}
+  - key: Murky Dungeon LOOP
+    value: {fileID: 8300000, guid: d5dee481ef04b4ee5b7b918bdc4de11a, type: 3}
+  - key: Soaring WITH SOLO
+    value: {fileID: 8300000, guid: 461ccf47b131b4d998665a26712ea162, type: 3}
+  - key: Walk
+    value: {fileID: 8300000, guid: 314d37dfb74502a4094b835d0e0d6c23, type: 3}

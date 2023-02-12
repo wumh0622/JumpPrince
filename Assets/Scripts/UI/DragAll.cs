@@ -15,11 +15,16 @@ public class DragAll : MonoBehaviour
 
     private void Update()
     {
+        if(m_DragObj && m_DragObj.tag == "Untagged")
+        {
+            m_DragObj = null;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit2D aHit = Physics2D.Raycast(m_CacheCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero,
                                                  float.PositiveInfinity, m_MovableLayers);
-            if (aHit)
+            if (aHit && aHit.collider.tag == "Dragable")
             {
                 m_DragObj = aHit.transform;
                 m_CacheOffset = m_DragObj.position - m_CacheCamera.ScreenToWorldPoint(Input.mousePosition);
