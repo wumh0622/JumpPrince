@@ -1,4 +1,5 @@
 using UnityEngine;
+using CarterGames.Assets.AudioManager;
 
 public class Effect_DigitalSprite : PPEffectBase
 {
@@ -6,6 +7,7 @@ public class Effect_DigitalSprite : PPEffectBase
     public override void StartModify()
     {
         base.StartModify();
+
         mErrorObj.SetActive(true);
     }
 

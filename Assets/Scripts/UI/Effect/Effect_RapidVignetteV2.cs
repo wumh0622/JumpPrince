@@ -1,14 +1,16 @@
 using UnityEngine;
 using XPostProcessing;
 using DG.Tweening;
+using CarterGames.Assets.AudioManager;
 
 public class Effect_RapidVignetteV2 : PPEffectBase
 {
     [SerializeField] private float m_FadeTime = 0;
     [SerializeField] private float m_StartValue = 0;
     [SerializeField] private float m_EndValue = 0;
-    
-   
+    [SerializeField] private string stage2Music;
+
+
     private RapidVignetteV2 m_VignetteV2 = null;
     private Tweener mCacheTweener = null;
 
@@ -29,6 +31,7 @@ public class Effect_RapidVignetteV2 : PPEffectBase
     public override void Finish()
     {
         mCacheTweener.KillTweener();
+        AudioManager.instance.PlayBGMusic(5.0f, stage2Music);
         base.Finish();
     }
 

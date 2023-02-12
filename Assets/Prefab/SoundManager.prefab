@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5736883506537837927}
   - component: {fileID: 6909734387094229513}
   - component: {fileID: -9213682294486338828}
+  - component: {fileID: 5461604172662197132}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -60,7 +61,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 60fd8ed651e7e4543ad45c23b9518bb0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d5dee481ef04b4ee5b7b918bdc4de11a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -146,3 +147,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5461604172662197132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5736883506537837924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a737743a18d6e6a439c98e9c5b19014c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicName: Soaring WITH SOLO
+  startFade: 3

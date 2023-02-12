@@ -54,10 +54,14 @@ MonoBehaviour:
   maxSpeed: 10
   maxJumpForce: 15
   minJumpForce: 5
+  jumpHorizonalScale: 0.5
   inputJumpAcceleration: 0.3
-  landTime: 0.5
+  landTime: 0.2
   jumpState: 0
   controlEnabled: 1
+  audioLand: Jump_Land
+  audioJump: Jump_Start
+  audioWalk: Walk
   FaceLeftAnimator: {fileID: 22100000, guid: 2ab5f769ebc8f614f9da36c8d544992e, type: 2}
 --- !u!212 &1129731297686725055
 SpriteRenderer:
