@@ -133,12 +133,11 @@ public class PlayerController : KinematicObject
             case JumpState.InFlight:
                 if (IsGrounded)
                 {
-                    jumpState = JumpState.Landed;
+                    AudioManager.instance.Play(audioLand);
+                    jumpState = JumpState.Landed;                 
                 }
                 break;
-            case JumpState.Landed:
-                jumpState = JumpState.Grounded;
-                AudioManager.instance.Play(audioLand);
+            case JumpState.Landed:  
                 StartCoroutine(WaitForLanding());
                 break;
         }
@@ -170,12 +169,13 @@ public class PlayerController : KinematicObject
     }
     IEnumerator WaitForLanding()
     {
-        animator.SetInteger("JumpState", 0);
+        animator.SetInteger("JumpState", 4);
 
         yield return new WaitForSeconds(landTime);
 
-        if (jumpState == JumpState.InFlight)
+        if (jumpState == JumpState.Landed)
         {
+            animator.SetInteger("JumpState", 0);
             jumpState = JumpState.Grounded;
         }
     }

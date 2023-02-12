@@ -357,8 +357,20 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1129731297686725025, guid: 072572d9d78f32a45a9c7457061a3af2, type: 3}
+      propertyPath: landTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129731297686725025, guid: 072572d9d78f32a45a9c7457061a3af2, type: 3}
       propertyPath: maxSpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129731297686725025, guid: 072572d9d78f32a45a9c7457061a3af2, type: 3}
+      propertyPath: audioJump
+      value: Jump_Start
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129731297686725025, guid: 072572d9d78f32a45a9c7457061a3af2, type: 3}
+      propertyPath: audioLand
+      value: Jump_Land
       objectReference: {fileID: 0}
     - target: {fileID: 1129731297686725025, guid: 072572d9d78f32a45a9c7457061a3af2, type: 3}
       propertyPath: maxJumpForce
@@ -634,6 +646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589e6701039d94746addd92499357dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offsetY: 0
   obj: {fileID: 1538016994}
 --- !u!1 &1538016994 stripped
 GameObject:
@@ -734,6 +747,67 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &1567110113
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -9213682294486338828, guid: 92128fb60c0692c468961f100d68343a, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 314d37dfb74502a4094b835d0e0d6c23, type: 3}
+    - target: {fileID: 5736883506537837924, guid: 92128fb60c0692c468961f100d68343a, type: 3}
+      propertyPath: m_Name
+      value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736883506537837927, guid: 92128fb60c0692c468961f100d68343a, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736883506537837927, guid: 92128fb60c0692c468961f100d68343a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736883506537837927, guid: 92128fb60c0692c468961f100d68343a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736883506537837927, guid: 92128fb60c0692c468961f100d68343a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736883506537837927, guid: 92128fb60c0692c468961f100d68343a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736883506537837927, guid: 92128fb60c0692c468961f100d68343a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736883506537837927, guid: 92128fb60c0692c468961f100d68343a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736883506537837927, guid: 92128fb60c0692c468961f100d68343a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736883506537837927, guid: 92128fb60c0692c468961f100d68343a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736883506537837927, guid: 92128fb60c0692c468961f100d68343a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736883506537837927, guid: 92128fb60c0692c468961f100d68343a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 92128fb60c0692c468961f100d68343a, type: 3}
 --- !u!1 &1613994384
 GameObject:
   m_ObjectHideFlags: 0
