@@ -13,6 +13,7 @@ public class PlayerController : KinematicObject
 
     public float maxJumpForce = 10;
     public float minJumpForce = 3;
+    public float jumpHorizonalScale = 0.5f;
     public float inputJumpAcceleration = 0.2f;
 
     public float landTime = 0.5f;
@@ -149,7 +150,7 @@ public class PlayerController : KinematicObject
         {
             if (jump)
             {
-                velocity = new Vector2(inputJumpAccumulator * jumpDirection, inputJumpAccumulator);
+                velocity = new Vector2(inputJumpAccumulator * jumpDirection * jumpHorizonalScale, inputJumpAccumulator);
                 jump = false;
             }
         }
@@ -173,7 +174,10 @@ public class PlayerController : KinematicObject
 
         yield return new WaitForSeconds(landTime);
 
-        jumpState = JumpState.Grounded;
+        if (jumpState == JumpState.InFlight)
+        {
+            jumpState = JumpState.Grounded;
+        }
     }
 
     public enum JumpState
