@@ -19,64 +19,46 @@ public class KinematicObject : MonoBehaviour
     /// </summary>
     public Vector2 velocity;
 
-    /// <summary>
-    /// Is the entity currently sitting on a surface?
-    /// </summary>
-    /// <value></value>
-    public bool IsGrounded { get; private set; }
+    public float groundFloorDist = 0.3f;
 
     protected Vector2 targetVelocity;
     protected Vector2 groundNormal;
-    protected Rigidbody2D body;
+
+    protected Collider2D selfCollider;
+
     protected ContactFilter2D contactFilter;
-    protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
+    protected Collider2D[] overlapBuffer = new Collider2D[16];
 
     protected Transform groundTransform;
     protected Vector2 groundRelativePosition;
 
     protected const float minMoveDistance = 0.001f;
     protected const float shellRadius = 0.01f;
-
-    /// <summary>
-    /// Bounce the object's vertical velocity.
-    /// </summary>
-    /// <param name="value"></param>
-    public void Bounce(float value)
+    public bool IsGrounded()
     {
-        velocity.y = value;
+        return groundTransform is not null;
     }
 
-    /// <summary>
-    /// Bounce the objects velocity in a direction.
-    /// </summary>
-    /// <param name="dir"></param>
-    public void Bounce(Vector2 dir)
+    public void Launch(Vector2 force)
     {
-        velocity.y = dir.y;
-        velocity.x = dir.x;
-    }
-
-    /// <summary>
-    /// Teleport to some position.
-    /// </summary>
-    /// <param name="position"></param>
-    public void Teleport(Vector3 position)
-    {
-        body.position = position;
-        velocity *= 0;
-        body.velocity *= 0;
+        groundTransform = null;
+        velocity = force;
     }
 
     protected virtual void OnEnable()
     {
-        body = GetComponent<Rigidbody2D>();
+        selfCollider = GetComponent<Collider2D>();
     }
 
     protected virtual void Start()
     {
+        selfCollider.enabled = true;
+
         contactFilter.useTriggers = false;
-        contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
+        contactFilter.SetLayerMask(1);
         contactFilter.useLayerMask = true;
+
+        groundNormal = Vector2.up;
     }
 
     protected virtual void Update()
@@ -92,83 +74,135 @@ public class KinematicObject : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        if (groundTransform is not null)
+        if (IsGrounded())
         {
-            body.position = new Vector2(groundTransform.position.x, groundTransform.position.y) + groundRelativePosition;
+            Vector2 groundDelta = groundTransform.TransformPoint(groundRelativePosition) - gameObject.transform.position;
+            gameObject.transform.Translate(new Vector3(groundDelta.x, groundDelta.y));
         }
 
-        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;   
-        velocity += targetVelocity;
+        PushOutPenetration();
 
-        IsGrounded = false;
+        if (IsGrounded())
+        {
+            velocity = targetVelocity;
 
-        var deltaPosition = velocity * Time.deltaTime;
+            Vector2 moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
+            Vector2 selfDelta = velocity.x * Time.deltaTime * moveAlongGround;
+            PerformMovement(selfDelta);
+            CheckFloor(groundFloorDist);
+        }
+        else
+        {
+            velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
 
-        var moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
+            Vector2 delta = velocity * Time.deltaTime;
+            PerformMovement(delta);
 
-        var move = moveAlongGround * deltaPosition.x;
+            if (Vector2.Dot(velocity, Physics2D.gravity) > 0)
+            {
+                CheckFloor(shellRadius);
+            }
+        }
+    }
 
-        PerformMovement(move);
+    void PushOutPenetration()
+    {
+        int count = selfCollider.OverlapCollider(contactFilter, overlapBuffer);
+        for (int i = 0; i < count; ++i)
+        {
+            if (overlapBuffer[i].isTrigger)
+            {
+                continue;
+            }
 
-        move = Vector2.up * deltaPosition.y;
-
-        PerformMovement(move);
+            ColliderDistance2D Penetration = selfCollider.Distance(overlapBuffer[i]);
+            if (Penetration.isOverlapped)
+            {
+                Vector2 push = Penetration.normal * Penetration.distance;
+                gameObject.transform.Translate(new Vector3(push.x, push.y));
+            }
+        }
     }
 
     void PerformMovement(Vector2 move)
     {
-        var distance = move.magnitude;
+        float distance = move.magnitude;
 
         if (distance > minMoveDistance)
         {
-            bool HasFloor = false;
-            //check if we hit anything in current direction of travel
-            var count = body.Cast(move, contactFilter, hitBuffer, distance + shellRadius);
-            for (var i = 0; i < count; i++)
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(selfCollider.bounds.center, selfCollider.bounds.extents * 2, transform.eulerAngles.z, move, distance + shellRadius, 1); ;
+            int hitIndex = -1;
+            for (int i = 0; i < hits.Length; i++)
             {
-                //remove shellDistance from actual move distance.
-                var modifiedDistance = hitBuffer[i].distance - shellRadius;
-                distance = modifiedDistance < distance ? modifiedDistance : distance;
-
-                var currentNormal = hitBuffer[i].normal;
-
-                //is this surface flat enough to land on?
-                if (currentNormal.y > minGroundNormalY)
-                {                    
-                    IsGrounded = true;
-                    groundTransform = hitBuffer[i].transform.gameObject.GetComponent<Transform>();              
-
-                    HasFloor = true;
-
-                    groundNormal = currentNormal;
-                    currentNormal.x = 0;
-
-                    velocity *= 0;
-                }
-                else
+                if (hits[i].collider.isTrigger)
                 {
-                    if (Vector2.Dot(velocity, currentNormal) <= 0)
-                    {
-                        velocity = Vector2.Reflect(velocity, currentNormal);
-                    }
-                    else 
-                    {
-                        distance = move.magnitude;
-                    }
+                    continue;
+                }
+
+                float modifiedDistance = hits[i].distance - shellRadius;
+                if (modifiedDistance < distance)
+                {
+                    distance = modifiedDistance;
+                    hitIndex = i;
                 }
             }
 
-            if (!HasFloor) 
+            if (IsGrounded() == false &&
+                hitIndex >= 0)
             {
-                groundTransform = null;
-                groundNormal = Vector2.up;
+                Vector2 normal = hits[hitIndex].normal;
+                float gravityDot = Vector2.Dot(Physics2D.gravity.normalized, normal);
+                if (gravityDot > -minGroundNormalY)
+                {
+                    float velocityDot = Vector2.Dot(velocity, normal);
+                    if (velocityDot < 0)
+                    {
+                        velocity = Vector2.Reflect(velocity, normal);
+                    }
+                }
             }
         }
 
-        body.position += move.normalized * distance;
-        if (groundTransform is not null)
-        {      
-            groundRelativePosition = body.position - new Vector2(groundTransform.position.x, groundTransform.position.y);
+        Vector2 delta = move.normalized * distance;
+        gameObject.transform.Translate(new Vector3(delta.x, delta.y));
+    }
+
+    void CheckFloor(float floorDist)
+    {
+        float distance = selfCollider.bounds.extents.y + floorDist;
+
+        groundTransform = null;
+
+        Vector2 size = new Vector2(selfCollider.bounds.extents.x * 2, shellRadius);
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(selfCollider.bounds.center, size, transform.eulerAngles.z, Physics2D.gravity, distance, 1);
+        int hitIndex = -1;
+        for (int i = 0; i < hits.Length; ++i)
+        {
+            if (hits[i].collider.isTrigger)
+            {
+                continue;
+            }
+
+            if (hits[i].distance < distance)
+            {
+                distance = hits[i].distance;
+
+                Vector2 normal = hits[i].normal;
+                float gravityDot = Vector2.Dot(Physics2D.gravity.normalized, normal);
+                if (gravityDot <= -minGroundNormalY)
+                {
+                    hitIndex = i;
+                }
+            }
+        }
+
+        if (hitIndex >= 0)
+        {
+            gameObject.transform.Translate(Physics2D.gravity.normalized * (distance - selfCollider.bounds.extents.y - Physics2D.defaultContactOffset * 2));
+
+            groundTransform = hits[hitIndex].collider.transform;
+            groundNormal = hits[hitIndex].normal;
+            groundRelativePosition = groundTransform.InverseTransformPoint(gameObject.transform.position);
         }
     }
 }

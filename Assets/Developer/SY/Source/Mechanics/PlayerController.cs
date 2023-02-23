@@ -56,7 +56,7 @@ public class PlayerController : KinematicObject
 
         if (controlEnabled)
         {
-            if (IsGrounded)
+            if (IsGrounded())
             {
                 if (jumpState == JumpState.Grounded)
                 {
@@ -87,7 +87,7 @@ public class PlayerController : KinematicObject
                 {
                     animator.SetInteger("JumpState", 2);
                 }
-                else 
+                else
                 {
                     animator.SetInteger("JumpState", 3);
                 }
@@ -125,13 +125,13 @@ public class PlayerController : KinematicObject
                 jump = true;
                 break;
             case JumpState.Jumping:
-                if (!IsGrounded)
+                if (IsGrounded() == false)
                 {
                     jumpState = JumpState.InFlight;
                 }
                 break;
             case JumpState.InFlight:
-                if (IsGrounded)
+                if (IsGrounded())
                 {
                     AudioManager.instance.Play(audioLand);
                     jumpState = JumpState.Landed;                 
@@ -145,24 +145,32 @@ public class PlayerController : KinematicObject
 
     protected override void ComputeVelocity()
     {
-        if (IsGrounded)
+        if (IsGrounded())
         {
             if (jump)
             {
-                velocity = new Vector2(inputJumpAccumulator * jumpDirection * jumpHorizonalScale, inputJumpAccumulator);
+                Launch(new Vector2(inputJumpAccumulator * jumpDirection * jumpHorizonalScale, inputJumpAccumulator));
                 jump = false;
             }
         }
 
-        animator.SetBool("IsMoving", Mathf.Abs(move.x) > 0.001f);
-
         targetVelocity = move * maxSpeed;
 
-        if (velocity.x > 0.01f || targetVelocity.x > 0.01f)
+        animator.SetBool("IsMoving", Mathf.Abs(targetVelocity.x) > 0.001f);
+
+        if (targetVelocity.x > 0.01f)
         {
             animator.runtimeAnimatorController = FaceRightAnimator;
         }
-        else if (velocity.x < -0.01f || targetVelocity.x < -0.01f)
+        else if (targetVelocity.x < -0.01f) 
+        {
+            animator.runtimeAnimatorController = FaceLeftAnimator;
+        }
+        else if (velocity.x > 0.01f)
+        {
+            animator.runtimeAnimatorController = FaceRightAnimator;
+        }
+        else if (velocity.x < -0.01f)
         {
             animator.runtimeAnimatorController = FaceLeftAnimator;
         }
