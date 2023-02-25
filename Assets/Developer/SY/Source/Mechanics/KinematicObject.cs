@@ -38,6 +38,11 @@ public class KinematicObject : MonoBehaviour
     {
         return groundTransform is not null;
     }
+    public void Teleport(Vector2 position)
+    {
+        groundTransform = null;
+        gameObject.transform.Translate(new Vector3(position.x, position.y) - gameObject.transform.position);
+    }
 
     public void Launch(Vector2 force)
     {
