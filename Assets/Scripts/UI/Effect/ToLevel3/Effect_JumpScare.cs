@@ -47,6 +47,7 @@ public class Effect_JumpScare : PPEffectBase
         mCacheTweener_2.KillTweener();
         m_MaskObj.SetActive(true);
         base.Finish();
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
     public override void ResetData()
