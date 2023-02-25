@@ -101,6 +101,8 @@ public class PlayerController : KinematicObject
             }
             else
             {
+                path.StopDrawing();
+
                 jumpState = JumpState.InFlight;
 
                 if (velocity.y > 0)
@@ -201,6 +203,7 @@ public class PlayerController : KinematicObject
             animator.runtimeAnimatorController = FaceLeftAnimator;
         }
     }
+
     IEnumerator WaitForLanding()
     {
         animator.SetInteger("JumpState", 4);
@@ -213,6 +216,7 @@ public class PlayerController : KinematicObject
             jumpState = JumpState.Grounded;
         }
     }
+
     void PlayWalkAudio()
     {
         AudioManager.instance.Play(audioWalk);
