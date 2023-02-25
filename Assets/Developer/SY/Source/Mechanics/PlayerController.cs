@@ -29,6 +29,8 @@ public class PlayerController : KinematicObject
     public string audioLand;
     public string audioJump;
     public string audioWalk;
+
+    //Animation
     public AnimatorOverrideController FaceLeftAnimator;
     RuntimeAnimatorController FaceRightAnimator;
 
@@ -39,6 +41,22 @@ public class PlayerController : KinematicObject
     SpriteRenderer spriteRenderer;
     Animator animator;
     ProjectilePath path;
+
+    public void Die() 
+    {
+        controlEnabled = false;
+        physEnabled = false;
+        spriteRenderer.enabled = false;
+
+        Singleton<SafePointManager>.instance.OnPlayerDied();
+    }
+
+    public void Respawn()
+    {
+        controlEnabled = true;
+        physEnabled = true;
+        spriteRenderer.enabled = true;
+    }
 
     void Awake()
     {

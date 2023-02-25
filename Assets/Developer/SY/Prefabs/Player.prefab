@@ -53,6 +53,7 @@ MonoBehaviour:
   gravityModifier: 1
   velocity: {x: 0, y: 0}
   groundFloorDist: 0.3
+  physEnabled: 1
   maxSpeed: 5
   maxJumpForce: 9
   minJumpForce: 3.5
