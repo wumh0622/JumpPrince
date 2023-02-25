@@ -7,6 +7,8 @@ using CarterGames.Assets.AudioManager;
 
 public class GhostManager : Singleton<GhostManager>
 {
+    public int killCount;
+
     public GameObject GhostPrefab;
 
     public Transform[] GhostHome;
@@ -68,8 +70,15 @@ public class GhostManager : Singleton<GhostManager>
 
     private void GhostManager_OnGhostTargetDestoryEvent(GhostTarget ghostTarget)
     {
+        
+        
         targetMap.Remove(ghostTarget.transform);
         target.Remove(ghostTarget.transform);
+        killCount++;
+        if (killCount == 10)
+        {
+            Stage2End();
+        }
     }
 
     public void StartGhostSpawnSequence()

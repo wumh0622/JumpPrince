@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a79b01ea5641d4aa6daa2e23605641, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -21,7 +21,7 @@ MonoBehaviour:
     value: 2
   threshold:
     overrideState: 1
-    value: 2.55
+    value: 0.78
   softKnee:
     overrideState: 1
     value: 0.5
@@ -228,7 +228,7 @@ MonoBehaviour:
     value: 0
   colorFilter:
     overrideState: 1
-    value: {r: 0.32941177, g: 0.32941177, b: 0.32941177, a: 1}
+    value: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
   hueShift:
     overrideState: 0
     value: 0

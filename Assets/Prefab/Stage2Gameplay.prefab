@@ -321,6 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234131e680c9c974abbb73a750fa8e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  killCount: 0
   GhostPrefab: {fileID: 4325832238047695331, guid: abf63cde13cbdd04b8278afb60cd61de, type: 3}
   GhostHome:
   - {fileID: 4839296862532964733}
@@ -347,7 +348,7 @@ MonoBehaviour:
   EachSpawnDelayTime: 1
   EachHomeGhostNum: 01000000020000000200000003000000030000000400000005000000050000000a0000000a0000000a0000000a0000000a0000001e0000001e0000001e0000001e000000
   maxGhostEachTarget: 3
-  playTime: 0
+  playTime: 90
   OnStage2Over:
     m_PersistentCalls:
       m_Calls: []

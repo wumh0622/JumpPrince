@@ -36,7 +36,11 @@ public partial class Effect_BlockV4 : PPEffectBase
     }
     public override void Finish()
     {
-        audio.Stop();
+        if(audio)
+        {
+            audio.Stop();
+        }
+
         mCacheTweener.KillTweener();
         base.Finish();
     }

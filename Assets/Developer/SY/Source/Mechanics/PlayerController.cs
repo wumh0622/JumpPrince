@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CarterGames.Assets.AudioManager;
-//using Platformer.Gameplay;
-//using static Platformer.Core.Simulation;
-//using Platformer.Model;
-//using Platformer.Core;
+using UnityEngine.Events;
 
 public class PlayerController : KinematicObject
 {
@@ -25,6 +22,11 @@ public class PlayerController : KinematicObject
 
     public bool controlEnabled = true;
 
+    public int dieErrorTimes = 5;
+    public UnityEvent OnPlayerDieTooMuchTimes;
+
+    private int dieCount = 0;
+
     //Audio
     public string audioLand;
     public string audioJump;
@@ -42,13 +44,25 @@ public class PlayerController : KinematicObject
     Animator animator;
     ProjectilePath path;
 
-    public void Die() 
+    public void Die()
     {
         controlEnabled = false;
-        physEnabled = false;
-        spriteRenderer.enabled = false;
+        physEnabled = false;   
 
-        Singleton<SafePointManager>.instance.OnPlayerDied();
+        ++dieCount;
+        if (dieCount >= dieErrorTimes)
+        {
+            controlEnabled = false;
+            physEnabled = false;
+
+            OnPlayerDieTooMuchTimes.Invoke();
+        }
+        else
+        {
+
+            spriteRenderer.enabled = false;
+            Singleton<SafePointManager>.instance.OnPlayerDied();
+        }
     }
 
     public void Respawn()
@@ -101,6 +115,8 @@ public class PlayerController : KinematicObject
             }
             else
             {
+                path.StopDrawing();
+
                 jumpState = JumpState.InFlight;
 
                 if (velocity.y > 0)
@@ -201,6 +217,7 @@ public class PlayerController : KinematicObject
             animator.runtimeAnimatorController = FaceLeftAnimator;
         }
     }
+
     IEnumerator WaitForLanding()
     {
         animator.SetInteger("JumpState", 4);
@@ -213,6 +230,7 @@ public class PlayerController : KinematicObject
             jumpState = JumpState.Grounded;
         }
     }
+
     void PlayWalkAudio()
     {
         AudioManager.instance.Play(audioWalk);

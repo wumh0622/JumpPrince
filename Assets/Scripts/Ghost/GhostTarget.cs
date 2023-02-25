@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GhostTarget : MonoBehaviour
 {
+    static int killCount;
     public int NeedGhost;
 
     public int GhostCount;
