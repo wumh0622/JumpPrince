@@ -119,10 +119,10 @@ public class Stage1Monster : MonoBehaviour
     private void CheckPlayerBeAttacked()
     {
         if (player.transform.position.y - transform.position.y < atkRange)
-        {
+        {        
             playerDie = true;
             monsterMoving = false;
-            Debug.Log("Dead");
+            player.GetComponent<PlayerController>().Die();
         }
     }
 
