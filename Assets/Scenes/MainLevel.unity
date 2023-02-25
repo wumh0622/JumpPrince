@@ -600,6 +600,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 816922571}
     m_Modifications:
     - target: {fileID: 5247699594457183395, guid: 765a638acc0cd314e9c807b6a8c168de, type: 3}
+      propertyPath: m_Size.y
+      value: 83.77128
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247699594457183395, guid: 765a638acc0cd314e9c807b6a8c168de, type: 3}
+      propertyPath: m_Offset.y
+      value: -42.515415
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247699594457183395, guid: 765a638acc0cd314e9c807b6a8c168de, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
@@ -657,7 +665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6561076034650906496, guid: 765a638acc0cd314e9c807b6a8c168de, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7037565317389317539, guid: 765a638acc0cd314e9c807b6a8c168de, type: 3}
       propertyPath: moveDistance
@@ -8586,19 +8594,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedExposedParameters: []
-  _boundGraphSerialization: '{"type":"FlowCanvas.FlowScript","nodes":[{"target":{},"targets":{},"_position":{"x":638.9574,"y":301.7766},"$type":"FlowCanvas.Nodes.Trigger2DEvents_Transform","$id":"0"},{"_position":{"x":839.9297,"y":303.9614},"$type":"FlowCanvas.Nodes.SwitchBool","$id":"1"},{"_method":{"_baseInfo":"Stage1Monster|MonsterStartAttack|System.Void","_paramsInfo":""},"_callable":true,"_inputPortValues":{"Stage1Monster":{"$content":1,"$type":"Stage1Monster"}},"_position":{"x":1022.93,"y":303.9614},"$type":"FlowCanvas.Nodes.ReflectedMethodNodeWrapper","$id":"2"},{"_method":{"_baseInfo":"CarterGames.Assets.AudioManager.AudioManager|PlayBGMusic|System.Void","_paramsInfo":"System.Single|System.String"},"_callable":true,"_inputPortValues":{"AudioManager":{"$content":2,"$type":"CarterGames.Assets.AudioManager.AudioManager"},"fadeTime":{"$content":1.0,"$type":"System.Single"},"id":{"$content":"Bandits
-    LOOP","$type":"System.String"}},"_position":{"x":1236.93,"y":309.9614},"$type":"FlowCanvas.Nodes.ReflectedMethodNodeWrapper","$id":"3"},{"_method":{"_baseInfo":"CarterGames.Assets.AudioManager.AudioManager|StopBGMusic|System.Void","_paramsInfo":"System.String"},"_callable":true,"_inputPortValues":{"AudioManager":{"$content":2,"$type":"CarterGames.Assets.AudioManager.AudioManager"},"id":{"$content":"Soaring
-    WITH SOLO","$type":"System.String"}},"_position":{"x":1470.93,"y":309.9614},"$type":"FlowCanvas.Nodes.ReflectedMethodNodeWrapper","$id":"4"},{"targetVariable":{"_name":"IsTrigger","_targetVariableID":"9c047be8-17e6-4080-800c-2abea2a4d207"},"_inputPortValues":{"Value":{"$content":true,"$type":"System.Boolean"}},"_position":{"x":1702.93,"y":293.9614},"$type":"FlowCanvas.Nodes.SetVariable`1[[System.Boolean,
-    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]","$id":"5"},{"value":{"_name":"IsTrigger","_targetVariableID":"9c047be8-17e6-4080-800c-2abea2a4d207"},"_position":{"x":845.9297,"y":230.9614},"$type":"FlowCanvas.Nodes.GetVariable`1[[System.Boolean,
-    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]","$id":"6"}],"connections":[{"_sourcePortName":"Enter","_targetPortName":"In","_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"FlowCanvas.BinderConnection"},{"_sourcePortName":"False","_targetPortName":"
+  _boundGraphSerialization: '{"type":"FlowCanvas.FlowScript","nodes":[{"target":{},"targets":{},"_position":{"x":376.9574,"y":346.7766},"$type":"FlowCanvas.Nodes.Trigger2DEvents_Transform","$id":"0"},{"_position":{"x":577.9297,"y":348.9614},"$type":"FlowCanvas.Nodes.SwitchBool","$id":"1"},{"_method":{"_baseInfo":"UnityEngine.GameObject|SetActive|System.Void","_paramsInfo":"System.Boolean"},"_callable":true,"_inputPortValues":{"GameObject":{"$content":1,"$type":"UnityEngine.GameObject"},"value":{"$content":true,"$type":"System.Boolean"}},"_position":{"x":802.9297,"y":345.9614},"$type":"FlowCanvas.Nodes.ReflectedMethodNodeWrapper","$id":"2"},{"_method":{"_baseInfo":"Stage1Monster|MonsterStartAttack|System.Void","_paramsInfo":""},"_callable":true,"_inputPortValues":{"Stage1Monster":{"$content":2,"$type":"Stage1Monster"}},"_position":{"x":1022.93,"y":303.9614},"$type":"FlowCanvas.Nodes.ReflectedMethodNodeWrapper","$id":"3"},{"_method":{"_baseInfo":"CarterGames.Assets.AudioManager.AudioManager|PlayBGMusic|System.Void","_paramsInfo":"System.Single|System.String"},"_callable":true,"_inputPortValues":{"AudioManager":{"$content":3,"$type":"CarterGames.Assets.AudioManager.AudioManager"},"fadeTime":{"$content":1.0,"$type":"System.Single"},"id":{"$content":"Bandits
+    LOOP","$type":"System.String"}},"_position":{"x":1236.93,"y":309.9614},"$type":"FlowCanvas.Nodes.ReflectedMethodNodeWrapper","$id":"4"},{"_method":{"_baseInfo":"CarterGames.Assets.AudioManager.AudioManager|StopBGMusic|System.Void","_paramsInfo":"System.String"},"_callable":true,"_inputPortValues":{"AudioManager":{"$content":3,"$type":"CarterGames.Assets.AudioManager.AudioManager"},"id":{"$content":"Soaring
+    WITH SOLO","$type":"System.String"}},"_position":{"x":1470.93,"y":309.9614},"$type":"FlowCanvas.Nodes.ReflectedMethodNodeWrapper","$id":"5"},{"targetVariable":{"_name":"IsTrigger","_targetVariableID":"9c047be8-17e6-4080-800c-2abea2a4d207"},"_inputPortValues":{"Value":{"$content":true,"$type":"System.Boolean"}},"_position":{"x":1702.93,"y":293.9614},"$type":"FlowCanvas.Nodes.SetVariable`1[[System.Boolean,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]","$id":"6"},{"value":{"_name":"IsTrigger","_targetVariableID":"9c047be8-17e6-4080-800c-2abea2a4d207"},"_position":{"x":583.9297,"y":275.9614},"$type":"FlowCanvas.Nodes.GetVariable`1[[System.Boolean,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]","$id":"7"}],"connections":[{"_sourcePortName":"Enter","_targetPortName":"In","_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"FlowCanvas.BinderConnection"},{"_sourcePortName":"False","_targetPortName":"
     ","_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"FlowCanvas.BinderConnection"},{"_sourcePortName":"
     ","_targetPortName":" ","_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"FlowCanvas.BinderConnection"},{"_sourcePortName":"
     ","_targetPortName":" ","_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"4"},"$type":"FlowCanvas.BinderConnection"},{"_sourcePortName":"
-    ","_targetPortName":"In","_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"5"},"$type":"FlowCanvas.BinderConnection"},{"_sourcePortName":"Value","_targetPortName":"Condition","_sourceNode":{"$ref":"6"},"_targetNode":{"$ref":"1"},"$type":"FlowCanvas.BinderConnection`1[[System.Boolean,
+    ","_targetPortName":" ","_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"5"},"$type":"FlowCanvas.BinderConnection"},{"_sourcePortName":"
+    ","_targetPortName":"In","_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"6"},"$type":"FlowCanvas.BinderConnection"},{"_sourcePortName":"Value","_targetPortName":"Condition","_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"1"},"$type":"FlowCanvas.BinderConnection`1[[System.Boolean,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}],"canvasGroups":[],"localBlackboard":{"_variables":{"IsTrigger":{"_name":"IsTrigger","_id":"9c047be8-17e6-4080-800c-2abea2a4d207","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}}}'
   _boundGraphObjectReferences:
   - {fileID: 0}
+  - {fileID: 254627427}
   - {fileID: 254627429}
   - {fileID: 823864849}
   _boundGraphSource:
@@ -21460,11 +21470,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1129731297686725052, guid: 072572d9d78f32a45a9c7457061a3af2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.47
+      value: -1.85
       objectReference: {fileID: 0}
     - target: {fileID: 1129731297686725052, guid: 072572d9d78f32a45a9c7457061a3af2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 91.87
+      value: 89.61
       objectReference: {fileID: 0}
     - target: {fileID: 1129731297686725052, guid: 072572d9d78f32a45a9c7457061a3af2, type: 3}
       propertyPath: m_LocalPosition.z
