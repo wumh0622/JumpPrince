@@ -38,9 +38,11 @@ public class PlayerController : KinematicObject
     Collider2D collider2d;
     SpriteRenderer spriteRenderer;
     Animator animator;
+    ProjectilePath path;
 
     void Awake()
     {
+        path = GetComponentInChildren<ProjectilePath>();
         collider2d = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -147,8 +149,14 @@ public class PlayerController : KinematicObject
     {
         if (IsGrounded())
         {
+            if(jumpState == JumpState.Charging)
+            {
+                path.DrawPath(new Vector2(inputJumpAccumulator * jumpDirection * jumpHorizonalScale, inputJumpAccumulator));
+            }
+            
             if (jump)
             {
+                path.StopDrawing();
                 Launch(new Vector2(inputJumpAccumulator * jumpDirection * jumpHorizonalScale, inputJumpAccumulator));
                 jump = false;
             }
