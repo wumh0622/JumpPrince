@@ -51,9 +51,21 @@ public class ProjectilePath : MonoBehaviour
 
         for (int i = 1; i < numPositions; i++)
         {
-            float elapsedTime = i * Time.deltaTime;
-            Vector2 newPosition = currentPosition + currentVelocity * elapsedTime + 0.5f * Physics2D.gravity * elapsedTime * elapsedTime;
-            lineRenderer.SetPosition(i, newPosition);
+            RaycastHit2D hit = Physics2D.Raycast(currentPosition, currentVelocity, currentVelocity.magnitude * Time.deltaTime, 1);
+            if (hit.collider is null)
+            {
+                currentVelocity += Physics2D.gravity * Time.deltaTime;
+                currentPosition += currentVelocity * Time.deltaTime;
+
+                lineRenderer.SetPosition(i, currentPosition);
+            }
+            else 
+            {
+                currentPosition += currentVelocity.normalized * hit.distance;
+                lineRenderer.SetPosition(i, currentPosition);
+                lineRenderer.positionCount = i + 1;
+                break;
+            }
         }
     }
 }
