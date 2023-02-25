@@ -53,12 +53,12 @@ MonoBehaviour:
   gravityModifier: 1
   velocity: {x: 0, y: 0}
   groundFloorDist: 0.3
-  maxSpeed: 10
-  maxJumpForce: 15
-  minJumpForce: 5
+  maxSpeed: 5
+  maxJumpForce: 9
+  minJumpForce: 3.5
   jumpHorizonalScale: 0.5
-  inputJumpAcceleration: 0.3
-  landTime: 0.2
+  inputJumpAcceleration: 0.1
+  landTime: 0.1
   jumpState: 0
   controlEnabled: 1
   audioLand: Jump_Land
@@ -105,7 +105,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 30
   m_Sprite: {fileID: 21300000, guid: 5064f9114ed96f942a6f24483ad0bf4d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -130,7 +130,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.028749198, y: -0.052424848}
+  m_Offset: {x: -0.04003466, y: -0.09869516}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -141,7 +141,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3134033, y: 0.83426976}
+  m_Size: {x: 0.23666225, y: 0.74172914}
   m_EdgeRadius: 0
 --- !u!95 &9150951748808218394
 Animator:
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialVelocity: {x: 0, y: 0}
   timeResolution: 0.02
-  maxTime: 10
+  maxTime: 1.5
   lineRenderer: {fileID: 1391950866251757882}
 --- !u!120 &1391950866251757882
 LineRenderer:
