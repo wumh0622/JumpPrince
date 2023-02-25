@@ -21,6 +21,8 @@ public class KinematicObject : MonoBehaviour
 
     public float groundFloorDist = 0.3f;
 
+    public bool physEnabled = true;
+
     protected Vector2 targetVelocity;
     protected Vector2 groundNormal;
 
@@ -41,6 +43,7 @@ public class KinematicObject : MonoBehaviour
     public void Teleport(Vector2 position)
     {
         groundTransform = null;
+        velocity = Vector2.zero;
         gameObject.transform.Translate(new Vector3(position.x, position.y) - gameObject.transform.position);
     }
 
@@ -79,6 +82,11 @@ public class KinematicObject : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+        if (!physEnabled) 
+        {
+            return;
+        }
+
         if (IsGrounded())
         {
             Vector2 groundDelta = groundTransform.TransformPoint(groundRelativePosition) - gameObject.transform.position;

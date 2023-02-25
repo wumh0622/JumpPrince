@@ -7,6 +7,8 @@ public class SafePointManager : Singleton<SafePointManager>
     public CheckPoint currentCheckPoint;
     public Stage1Monster monster;
 
+    public float respawnTime = 1.5f;
+
     PlayerController controller;
     
 
@@ -23,12 +25,26 @@ public class SafePointManager : Singleton<SafePointManager>
         }
     }
 
-    public void Respawn()
+    public void OnPlayerDied() 
     {
-        controller.Teleport(currentCheckPoint.GetSafePoint());
+        StartCoroutine(WaitForReset());
     }
 
-    public void ResetMonster()
+    IEnumerator WaitForReset()
+    {
+        yield return new WaitForSeconds(respawnTime);
+
+        Respawn();
+        ResetMonster();
+    }
+
+    private void Respawn()
+    {
+        controller.Teleport(currentCheckPoint.GetSafePoint());
+        controller.Respawn();
+    }
+
+    private void ResetMonster()
     {
         monster.MonsterTeleport(currentCheckPoint.GetMonsterPoint());
     }
