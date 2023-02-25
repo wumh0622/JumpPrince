@@ -1,5 +1,78 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &426249468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 426249469}
+  - component: {fileID: 426249470}
+  - component: {fileID: 426249471}
+  m_Layer: 0
+  m_Name: Effect_JumpScare
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &426249469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426249468}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2050915707238951371}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &426249470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426249468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce5c8eb97a1201d4987d64afa875144f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_KeepTime: 7
+  m_ScareAudio: DI-17
+  m_MonsterObj: {fileID: 0}
+  m_MaskObj: {fileID: 0}
+  m_DelayTime: 3
+  m_BlurDelayTime: 3
+  m_ModifyDelay: 3
+  m_BlurRadiusStart: 0.16
+  m_BlurRadiusEnd: 2.7
+  m_IterationStart: 24
+  m_IterationEnd: 100
+--- !u!114 &426249471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426249468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 0cefa3b495228d34486154e9df0dfe69, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
 --- !u!1 &2050915707238951370
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,6 +103,7 @@ Transform:
   m_Children:
   - {fileID: 2050915708492856439}
   - {fileID: 2050915707723324469}
+  - {fileID: 426249469}
   m_Father: {fileID: 7896498459489111062}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -209,6 +283,7 @@ MonoBehaviour:
   m_MaskObj: {fileID: 0}
   cameraLocate: {fileID: 0}
   objectToDestory:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
