@@ -25,6 +25,8 @@ MonoBehaviour:
     value: {fileID: 8300000, guid: a52ae605edb194ee095632b0e09532dc, type: 3}
   - key: Cracking
     value: {fileID: 8300000, guid: 60fd8ed651e7e4543ad45c23b9518bb0, type: 3}
+  - key: DI-17
+    value: {fileID: 8300000, guid: 17dc844dcf7364a02874bc62368f03ca, type: 3}
   - key: ELECTRICITY_Fuzzy_Spikey_loop_mono
     value: {fileID: 8300000, guid: ba9f0a1e93537be4385daf53f847186b, type: 3}
   - key: Jump_Land

@@ -12,6 +12,15 @@ public static class DoTweenExtension
         });
     }
 
+    public static Tweener DT_To(int iStart, int iEnd, float iTime, Action<int> iDoEvent)
+    {
+        int aValue = iStart;
+        return DOTween.To(() => aValue, x => aValue = x, iEnd, iTime).OnUpdate(() =>
+        {
+            iDoEvent(aValue);
+        });
+    }
+
     public static void KillTweener(this Tweener iTweener)
     {
         if (iTweener != null)
