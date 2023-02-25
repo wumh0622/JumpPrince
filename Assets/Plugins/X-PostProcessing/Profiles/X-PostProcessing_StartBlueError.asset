@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7287521705307403566
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec8e4c840c12a84f9cbb49d82780b09, type: 3}
+  m_Name: GlitchImageBlockV4
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  Speed:
+    overrideState: 1
+    value: 6.9
+  BlockSize:
+    overrideState: 1
+    value: 14
+  MaxRGBSplitX:
+    overrideState: 1
+    value: 1
+  MaxRGBSplitY:
+    overrideState: 1
+    value: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
+  m_Name: X-PostProcessing_StartBlueError
+  m_EditorClassIdentifier: 
+  settings:
+  - {fileID: -7287521705307403566}
+--- !u!114 &114079023366429692
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b24348132ef15346be9ae6f5fe6e94e, type: 3}
+  m_Name: RapidVignette
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  vignetteType:
+    overrideState: 1
+    value: 1
+  vignetteIndensity:
+    overrideState: 1
+    value: 1
+  vignetteCenter:
+    overrideState: 1
+    value: {x: 0.5, y: 0.5}
+  vignetteColor:
+    overrideState: 1
+    value: {r: 0.1, g: 0.8, b: 1, a: 1}
