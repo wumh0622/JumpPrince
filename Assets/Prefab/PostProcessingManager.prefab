@@ -418,6 +418,7 @@ MonoBehaviour:
   m_KeepTime: 3.5
   audioEffect: ELECTRICITY_Fuzzy_Spikey_loop_mono
   openMusicID: Soaring WITH SOLO
+  openMusicID_Second: Bandits LOOP
   m_FadeTime: 2
   m_StartValue: 1
   m_EndValue: 8

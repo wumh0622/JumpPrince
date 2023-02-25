@@ -135,9 +135,4 @@ public class Stage1Monster : MonoBehaviour
             MonsterAudio.Play();
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        DeadManager.instance.Dead();
-    }
 }
