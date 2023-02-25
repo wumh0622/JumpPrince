@@ -339,4 +339,4 @@ MonoBehaviour:
   moveDistance: 1
   atkRange: 7
   atkDetectionRange: 12
-  moveInterval: 1
+  moveInterval: 5

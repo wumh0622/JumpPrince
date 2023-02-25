@@ -54,9 +54,6 @@ public class ProjectilePath : MonoBehaviour
             float elapsedTime = i * Time.deltaTime;
             Vector2 newPosition = currentPosition + currentVelocity * elapsedTime + 0.5f * Physics2D.gravity * elapsedTime * elapsedTime;
             lineRenderer.SetPosition(i, newPosition);
-
-            // 根據物理公式計算新的速度
-            currentVelocity += Physics2D.gravity * elapsedTime * gravityModifier;
         }
     }
 }
