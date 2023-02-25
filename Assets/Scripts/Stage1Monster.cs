@@ -14,11 +14,12 @@ public class Stage1Monster : MonoBehaviour
     private GameObject player;
     private bool onAtk = false;
     private bool playerDie = false;
+    private bool monsterMoving = false;
 
     [SerializeField] public AudioClip scareAudio;
     [SerializeField] public AudioClip showupAudio;
     [SerializeField] private Animator animControl;
-    [SerializeField] private float maxDistanceToPlayer = 12f;
+    //[SerializeField] private float maxDistanceToPlayer = 12f;
     [SerializeField] private float movingPower = 12f;
     [SerializeField] private float moveDistance = 1f;
     [SerializeField] private float atkRange = 7f;
@@ -39,24 +40,35 @@ public class Stage1Monster : MonoBehaviour
         originPosition = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void MonsterStartAttack()
     {
-
+        SimpleTimerManager.instance.RunTimer(MonsterMoveUp, moveInterval);
+        monsterMoving = true;
     }
 
-    private void FixedUpdate()
+    // Update is called once per frame
+    void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, targetY, transform.position.z), movingPower * Time.deltaTime);
         if (!onAtk && !playerDie)
         {
-            if (Time.time > moveTime)
-            {
-                moveTime += moveInterval;
-                MonsterMoveUp();
-            }
             CheckPlayerOnRange();
         }
+    }
+
+    public void MonsterTeleport(Vector2 pos)
+    {
+        ResetPositionAndState();
+        SimpleTimerManager.instance.StopTimer(MonsterMoveUp);
+        SimpleTimerManager.instance.StopTimer(CheckPlayerBeAttacked);
+        SimpleTimerManager.instance.StopTimer(restAtk);
+
+        MonsterStartAttack();
+    }
+
+    private void FixedUpdate()
+    {
+
     }
 
     public void ResetPositionAndState()
@@ -68,6 +80,7 @@ public class Stage1Monster : MonoBehaviour
     public void MonsterMoveUp()
     {
         targetY = transform.position.y + moveDistance;
+        SimpleTimerManager.instance.RunTimer(MonsterMoveUp, moveInterval);
         //moveShake.Play("moveUp");
         //MonsterScare(scareAudio);
     }
@@ -108,12 +121,13 @@ public class Stage1Monster : MonoBehaviour
         if (player.transform.position.y - transform.position.y < atkRange)
         {
             playerDie = true;
-            //player die
+            monsterMoving = false;
+            Debug.Log("Dead");
         }
     }
 
 
-    void MonsterScare(AudioClip clip)
+     void MonsterScare(AudioClip clip)
     {
         MonsterAudio.clip = clip;
         if (MonsterAudio.clip)
