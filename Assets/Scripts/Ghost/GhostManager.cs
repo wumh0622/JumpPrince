@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
+using CarterGames.Assets.AudioManager;
 
 public class GhostManager : Singleton<GhostManager>
 {
@@ -27,6 +29,11 @@ public class GhostManager : Singleton<GhostManager>
 
     Transform mousePos;
 
+    public float playTime;
+
+    public UnityEvent OnStage2Over;
+    public GameObject blueScreen;
+
     private void Start()
     {
         foreach (var item in target)
@@ -38,6 +45,20 @@ public class GhostManager : Singleton<GhostManager>
         StartGhostSpawnSequence();
         mousePos = new GameObject().transform;
 
+        SimpleTimerManager.instance.RunTimer(Stage2EndSequence, playTime);
+
+    }
+
+    public void Stage2EndSequence()
+    {
+        SimpleTimerManager.instance.RunTimer(Stage2End, 3.0f);
+        blueScreen.SetActive(true);
+        enabled = false;
+    }
+
+    public void Stage2End()
+    {
+        OnStage2Over.Invoke();
     }
 
     private void Update()
