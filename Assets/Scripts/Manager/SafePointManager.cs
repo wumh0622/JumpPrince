@@ -46,6 +46,6 @@ public class SafePointManager : Singleton<SafePointManager>
 
     private void ResetMonster()
     {
-        monster.ResetPositionAndState();
+        monster.MonsterTeleport(currentCheckPoint.GetMonsterPoint());
     }
 }

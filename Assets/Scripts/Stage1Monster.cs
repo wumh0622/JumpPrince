@@ -56,9 +56,9 @@ public class Stage1Monster : MonoBehaviour
         }
     }
 
-    public void MonsterTeleport(Vector2 pos)
+    public void MonsterTeleport(float pos)
     {
-        ResetPositionAndState();
+        ResetPositionAndState(pos);
         SimpleTimerManager.instance.StopTimer(MonsterMoveUp);
         SimpleTimerManager.instance.StopTimer(CheckPlayerBeAttacked);
         SimpleTimerManager.instance.StopTimer(restAtk);
@@ -71,9 +71,9 @@ public class Stage1Monster : MonoBehaviour
 
     }
 
-    public void ResetPositionAndState()
+    public void ResetPositionAndState(float y)
     {
-        targetY = originTargetY;
+        targetY = y;
         transform.position = originPosition;
         playerDie = false;
     }

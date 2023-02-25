@@ -39,8 +39,8 @@ public class CheckPoint : MonoBehaviour
         return (Vector2)transform.position + safePointOffset;
     }
 
-    public Vector2 GetMonsterPoint()
+    public float GetMonsterPoint()
     {
-        return new Vector2(monster.transform.position.x, transform.position.y + monsterHeightOffset);
+        return (transform.position.y + monsterHeightOffset);
     }
 }
