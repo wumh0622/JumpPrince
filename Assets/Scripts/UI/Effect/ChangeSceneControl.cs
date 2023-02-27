@@ -26,6 +26,14 @@ public class ChangeSceneControl : MonoBehaviour
         mErrorBtn.onClick.AddListener(mCurFinish);
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F11))
+        {
+            StartChangeScene(2);
+        }
+    }
+
 
     #region 測試用 之後刪除
     public int TestToLevelIndex = 2;
