@@ -19,10 +19,6 @@ public class SafePointManager : Singleton<SafePointManager>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Respawn();
-        }
     }
 
     public void OnPlayerDied() 

@@ -55,9 +55,7 @@ namespace CarterGames.Assets.AudioManager
         private Dictionary<string, AudioClip> lib;
         private bool canPlayAudio = true;
         
-#if Use_CGAudioManager_Static || USE_CG_AM_STATIC
         public static AudioManager instance;
-#endif
         
         /* ─────────────────────────────────────────────────────────────────────────────────────────────────────────────
         |   Properties
@@ -138,7 +136,6 @@ namespace CarterGames.Assets.AudioManager
         
         private void OnEnable()
         {
-#if Use_CGAudioManager_Static || USE_CG_AM_STATIC
             // Checks and removed instances if extra are present.
             DontDestroyOnLoad(this);
 
@@ -146,7 +143,6 @@ namespace CarterGames.Assets.AudioManager
                 instance = this;
             else
                 Destroy(gameObject);
-#endif
         }
         
         
@@ -328,7 +324,7 @@ namespace CarterGames.Assets.AudioManager
         /// <param name="mixerID">Int | The mixer ID to use... Set in the Audio Manager Inspector...</param>
         /// <param name="volume">Float | The volume that the clip will be played at, default = 1.</param>
         /// <param name="pitch">Float | The pitch that the sound is played at, default = 1.</param>
-        public AudioSource PlayAndGetSource(string request, int mixerID, float volume = 1f, float pitch = 1f)
+        public AudioSource PlayAndGetSource(string request, int mixerID, float volume = 1f, float pitch = 1f, bool loop = false)
         {
             if (!CanPlayAudio) return null;
             if (!HasClip(request)) return null;
@@ -339,6 +335,7 @@ namespace CarterGames.Assets.AudioManager
 
             source = SourceSetup(source, lib[request], 0, volume, pitch);
             source.outputAudioMixerGroup = audioManagerFile.audioMixer[mixerID];
+            source.loop = loop;
             source.Play();
             
             AddToAudioRemoval(audioRemoval, source);
@@ -1758,7 +1755,7 @@ namespace CarterGames.Assets.AudioManager
         Dictionary<string, AudioSource> bgMap = new Dictionary<string, AudioSource>();
         public void PlayBGMusic(float fadeTime, string id)
         {
-            AudioSource audio = PlayAndGetSource(id, 1, 0.0f, 1.0f);
+            AudioSource audio = PlayAndGetSource(id, 1, 0.0f, 1.0f, true);
             audio.loop = true;
             DOTween.To(() => audio.volume, x => audio.volume = x, 1.0f, fadeTime);
             bgMap.Add(id, audio);

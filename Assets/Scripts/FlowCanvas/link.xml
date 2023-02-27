@@ -71,6 +71,7 @@
 		<type fullname="UnityEngine.Rigidbody2D" preserve="all"/>
 	</assembly>
 	<assembly fullname="UnityEngine.AnimationModule">
+		<type fullname="UnityEngine.Animation" preserve="all"/>
 		<type fullname="UnityEngine.AnimationClip" preserve="all"/>
 		<type fullname="UnityEngine.Animator" preserve="all"/>
 	</assembly>

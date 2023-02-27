@@ -185,44 +185,6 @@ namespace ParadoxNotion.Internal{
 		FlowCanvas.Nodes.Cast<UnityEngine.Space> FlowCanvas_Nodes_Cast_UnityEngine_Space;
 		FlowCanvas.Nodes.Cast<UnityEngine.LayerMask> FlowCanvas_Nodes_Cast_UnityEngine_LayerMask;
 
-		FlowCanvas.Nodes.CastTo<System.Boolean> FlowCanvas_Nodes_CastTo_System_Boolean;
-		FlowCanvas.Nodes.CastTo<System.Single> FlowCanvas_Nodes_CastTo_System_Single;
-		FlowCanvas.Nodes.CastTo<System.Int32> FlowCanvas_Nodes_CastTo_System_Int32;
-		FlowCanvas.Nodes.CastTo<UnityEngine.Vector2> FlowCanvas_Nodes_CastTo_UnityEngine_Vector2;
-		FlowCanvas.Nodes.CastTo<UnityEngine.Vector3> FlowCanvas_Nodes_CastTo_UnityEngine_Vector3;
-		FlowCanvas.Nodes.CastTo<UnityEngine.Vector4> FlowCanvas_Nodes_CastTo_UnityEngine_Vector4;
-		FlowCanvas.Nodes.CastTo<UnityEngine.Quaternion> FlowCanvas_Nodes_CastTo_UnityEngine_Quaternion;
-		FlowCanvas.Nodes.CastTo<UnityEngine.Keyframe> FlowCanvas_Nodes_CastTo_UnityEngine_Keyframe;
-		FlowCanvas.Nodes.CastTo<UnityEngine.Bounds> FlowCanvas_Nodes_CastTo_UnityEngine_Bounds;
-		FlowCanvas.Nodes.CastTo<UnityEngine.Color> FlowCanvas_Nodes_CastTo_UnityEngine_Color;
-		FlowCanvas.Nodes.CastTo<UnityEngine.Rect> FlowCanvas_Nodes_CastTo_UnityEngine_Rect;
-		FlowCanvas.Nodes.CastTo<UnityEngine.ContactPoint> FlowCanvas_Nodes_CastTo_UnityEngine_ContactPoint;
-		FlowCanvas.Nodes.CastTo<UnityEngine.ContactPoint2D> FlowCanvas_Nodes_CastTo_UnityEngine_ContactPoint2D;
-		FlowCanvas.Nodes.CastTo<UnityEngine.RaycastHit> FlowCanvas_Nodes_CastTo_UnityEngine_RaycastHit;
-		FlowCanvas.Nodes.CastTo<UnityEngine.RaycastHit2D> FlowCanvas_Nodes_CastTo_UnityEngine_RaycastHit2D;
-		FlowCanvas.Nodes.CastTo<UnityEngine.Ray> FlowCanvas_Nodes_CastTo_UnityEngine_Ray;
-		FlowCanvas.Nodes.CastTo<UnityEngine.Space> FlowCanvas_Nodes_CastTo_UnityEngine_Space;
-		FlowCanvas.Nodes.CastTo<UnityEngine.LayerMask> FlowCanvas_Nodes_CastTo_UnityEngine_LayerMask;
-
-		FlowCanvas.Nodes.CodeEvent<System.Boolean> FlowCanvas_Nodes_CodeEvent_System_Boolean;
-		FlowCanvas.Nodes.CodeEvent<System.Single> FlowCanvas_Nodes_CodeEvent_System_Single;
-		FlowCanvas.Nodes.CodeEvent<System.Int32> FlowCanvas_Nodes_CodeEvent_System_Int32;
-		FlowCanvas.Nodes.CodeEvent<UnityEngine.Vector2> FlowCanvas_Nodes_CodeEvent_UnityEngine_Vector2;
-		FlowCanvas.Nodes.CodeEvent<UnityEngine.Vector3> FlowCanvas_Nodes_CodeEvent_UnityEngine_Vector3;
-		FlowCanvas.Nodes.CodeEvent<UnityEngine.Vector4> FlowCanvas_Nodes_CodeEvent_UnityEngine_Vector4;
-		FlowCanvas.Nodes.CodeEvent<UnityEngine.Quaternion> FlowCanvas_Nodes_CodeEvent_UnityEngine_Quaternion;
-		FlowCanvas.Nodes.CodeEvent<UnityEngine.Keyframe> FlowCanvas_Nodes_CodeEvent_UnityEngine_Keyframe;
-		FlowCanvas.Nodes.CodeEvent<UnityEngine.Bounds> FlowCanvas_Nodes_CodeEvent_UnityEngine_Bounds;
-		FlowCanvas.Nodes.CodeEvent<UnityEngine.Color> FlowCanvas_Nodes_CodeEvent_UnityEngine_Color;
-		FlowCanvas.Nodes.CodeEvent<UnityEngine.Rect> FlowCanvas_Nodes_CodeEvent_UnityEngine_Rect;
-		FlowCanvas.Nodes.CodeEvent<UnityEngine.ContactPoint> FlowCanvas_Nodes_CodeEvent_UnityEngine_ContactPoint;
-		FlowCanvas.Nodes.CodeEvent<UnityEngine.ContactPoint2D> FlowCanvas_Nodes_CodeEvent_UnityEngine_ContactPoint2D;
-		FlowCanvas.Nodes.CodeEvent<UnityEngine.RaycastHit> FlowCanvas_Nodes_CodeEvent_UnityEngine_RaycastHit;
-		FlowCanvas.Nodes.CodeEvent<UnityEngine.RaycastHit2D> FlowCanvas_Nodes_CodeEvent_UnityEngine_RaycastHit2D;
-		FlowCanvas.Nodes.CodeEvent<UnityEngine.Ray> FlowCanvas_Nodes_CodeEvent_UnityEngine_Ray;
-		FlowCanvas.Nodes.CodeEvent<UnityEngine.Space> FlowCanvas_Nodes_CodeEvent_UnityEngine_Space;
-		FlowCanvas.Nodes.CodeEvent<UnityEngine.LayerMask> FlowCanvas_Nodes_CodeEvent_UnityEngine_LayerMask;
-
 		FlowCanvas.Nodes.CreateCollection<System.Boolean> FlowCanvas_Nodes_CreateCollection_System_Boolean;
 		FlowCanvas.Nodes.CreateCollection<System.Single> FlowCanvas_Nodes_CreateCollection_System_Single;
 		FlowCanvas.Nodes.CreateCollection<System.Int32> FlowCanvas_Nodes_CreateCollection_System_Int32;
@@ -488,25 +450,6 @@ namespace ParadoxNotion.Internal{
 		FlowCanvas.Nodes.InsertListItem<UnityEngine.Ray> FlowCanvas_Nodes_InsertListItem_UnityEngine_Ray;
 		FlowCanvas.Nodes.InsertListItem<UnityEngine.Space> FlowCanvas_Nodes_InsertListItem_UnityEngine_Space;
 		FlowCanvas.Nodes.InsertListItem<UnityEngine.LayerMask> FlowCanvas_Nodes_InsertListItem_UnityEngine_LayerMask;
-
-		FlowCanvas.Nodes.PickValue<System.Boolean> FlowCanvas_Nodes_PickValue_System_Boolean;
-		FlowCanvas.Nodes.PickValue<System.Single> FlowCanvas_Nodes_PickValue_System_Single;
-		FlowCanvas.Nodes.PickValue<System.Int32> FlowCanvas_Nodes_PickValue_System_Int32;
-		FlowCanvas.Nodes.PickValue<UnityEngine.Vector2> FlowCanvas_Nodes_PickValue_UnityEngine_Vector2;
-		FlowCanvas.Nodes.PickValue<UnityEngine.Vector3> FlowCanvas_Nodes_PickValue_UnityEngine_Vector3;
-		FlowCanvas.Nodes.PickValue<UnityEngine.Vector4> FlowCanvas_Nodes_PickValue_UnityEngine_Vector4;
-		FlowCanvas.Nodes.PickValue<UnityEngine.Quaternion> FlowCanvas_Nodes_PickValue_UnityEngine_Quaternion;
-		FlowCanvas.Nodes.PickValue<UnityEngine.Keyframe> FlowCanvas_Nodes_PickValue_UnityEngine_Keyframe;
-		FlowCanvas.Nodes.PickValue<UnityEngine.Bounds> FlowCanvas_Nodes_PickValue_UnityEngine_Bounds;
-		FlowCanvas.Nodes.PickValue<UnityEngine.Color> FlowCanvas_Nodes_PickValue_UnityEngine_Color;
-		FlowCanvas.Nodes.PickValue<UnityEngine.Rect> FlowCanvas_Nodes_PickValue_UnityEngine_Rect;
-		FlowCanvas.Nodes.PickValue<UnityEngine.ContactPoint> FlowCanvas_Nodes_PickValue_UnityEngine_ContactPoint;
-		FlowCanvas.Nodes.PickValue<UnityEngine.ContactPoint2D> FlowCanvas_Nodes_PickValue_UnityEngine_ContactPoint2D;
-		FlowCanvas.Nodes.PickValue<UnityEngine.RaycastHit> FlowCanvas_Nodes_PickValue_UnityEngine_RaycastHit;
-		FlowCanvas.Nodes.PickValue<UnityEngine.RaycastHit2D> FlowCanvas_Nodes_PickValue_UnityEngine_RaycastHit2D;
-		FlowCanvas.Nodes.PickValue<UnityEngine.Ray> FlowCanvas_Nodes_PickValue_UnityEngine_Ray;
-		FlowCanvas.Nodes.PickValue<UnityEngine.Space> FlowCanvas_Nodes_PickValue_UnityEngine_Space;
-		FlowCanvas.Nodes.PickValue<UnityEngine.LayerMask> FlowCanvas_Nodes_PickValue_UnityEngine_LayerMask;
 
 		FlowCanvas.Nodes.ReadFlowParameter<System.Boolean> FlowCanvas_Nodes_ReadFlowParameter_System_Boolean;
 		FlowCanvas.Nodes.ReadFlowParameter<System.Single> FlowCanvas_Nodes_ReadFlowParameter_System_Single;
@@ -849,82 +792,6 @@ namespace ParadoxNotion.Internal{
 		FlowCanvas.Nodes.ShuffleList<UnityEngine.Ray> FlowCanvas_Nodes_ShuffleList_UnityEngine_Ray;
 		FlowCanvas.Nodes.ShuffleList<UnityEngine.Space> FlowCanvas_Nodes_ShuffleList_UnityEngine_Space;
 		FlowCanvas.Nodes.ShuffleList<UnityEngine.LayerMask> FlowCanvas_Nodes_ShuffleList_UnityEngine_LayerMask;
-
-		FlowCanvas.Nodes.StaticCodeEvent<System.Boolean> FlowCanvas_Nodes_StaticCodeEvent_System_Boolean;
-		FlowCanvas.Nodes.StaticCodeEvent<System.Single> FlowCanvas_Nodes_StaticCodeEvent_System_Single;
-		FlowCanvas.Nodes.StaticCodeEvent<System.Int32> FlowCanvas_Nodes_StaticCodeEvent_System_Int32;
-		FlowCanvas.Nodes.StaticCodeEvent<UnityEngine.Vector2> FlowCanvas_Nodes_StaticCodeEvent_UnityEngine_Vector2;
-		FlowCanvas.Nodes.StaticCodeEvent<UnityEngine.Vector3> FlowCanvas_Nodes_StaticCodeEvent_UnityEngine_Vector3;
-		FlowCanvas.Nodes.StaticCodeEvent<UnityEngine.Vector4> FlowCanvas_Nodes_StaticCodeEvent_UnityEngine_Vector4;
-		FlowCanvas.Nodes.StaticCodeEvent<UnityEngine.Quaternion> FlowCanvas_Nodes_StaticCodeEvent_UnityEngine_Quaternion;
-		FlowCanvas.Nodes.StaticCodeEvent<UnityEngine.Keyframe> FlowCanvas_Nodes_StaticCodeEvent_UnityEngine_Keyframe;
-		FlowCanvas.Nodes.StaticCodeEvent<UnityEngine.Bounds> FlowCanvas_Nodes_StaticCodeEvent_UnityEngine_Bounds;
-		FlowCanvas.Nodes.StaticCodeEvent<UnityEngine.Color> FlowCanvas_Nodes_StaticCodeEvent_UnityEngine_Color;
-		FlowCanvas.Nodes.StaticCodeEvent<UnityEngine.Rect> FlowCanvas_Nodes_StaticCodeEvent_UnityEngine_Rect;
-		FlowCanvas.Nodes.StaticCodeEvent<UnityEngine.ContactPoint> FlowCanvas_Nodes_StaticCodeEvent_UnityEngine_ContactPoint;
-		FlowCanvas.Nodes.StaticCodeEvent<UnityEngine.ContactPoint2D> FlowCanvas_Nodes_StaticCodeEvent_UnityEngine_ContactPoint2D;
-		FlowCanvas.Nodes.StaticCodeEvent<UnityEngine.RaycastHit> FlowCanvas_Nodes_StaticCodeEvent_UnityEngine_RaycastHit;
-		FlowCanvas.Nodes.StaticCodeEvent<UnityEngine.RaycastHit2D> FlowCanvas_Nodes_StaticCodeEvent_UnityEngine_RaycastHit2D;
-		FlowCanvas.Nodes.StaticCodeEvent<UnityEngine.Ray> FlowCanvas_Nodes_StaticCodeEvent_UnityEngine_Ray;
-		FlowCanvas.Nodes.StaticCodeEvent<UnityEngine.Space> FlowCanvas_Nodes_StaticCodeEvent_UnityEngine_Space;
-		FlowCanvas.Nodes.StaticCodeEvent<UnityEngine.LayerMask> FlowCanvas_Nodes_StaticCodeEvent_UnityEngine_LayerMask;
-
-		FlowCanvas.Nodes.SwitchValue<System.Boolean> FlowCanvas_Nodes_SwitchValue_System_Boolean;
-		FlowCanvas.Nodes.SwitchValue<System.Single> FlowCanvas_Nodes_SwitchValue_System_Single;
-		FlowCanvas.Nodes.SwitchValue<System.Int32> FlowCanvas_Nodes_SwitchValue_System_Int32;
-		FlowCanvas.Nodes.SwitchValue<UnityEngine.Vector2> FlowCanvas_Nodes_SwitchValue_UnityEngine_Vector2;
-		FlowCanvas.Nodes.SwitchValue<UnityEngine.Vector3> FlowCanvas_Nodes_SwitchValue_UnityEngine_Vector3;
-		FlowCanvas.Nodes.SwitchValue<UnityEngine.Vector4> FlowCanvas_Nodes_SwitchValue_UnityEngine_Vector4;
-		FlowCanvas.Nodes.SwitchValue<UnityEngine.Quaternion> FlowCanvas_Nodes_SwitchValue_UnityEngine_Quaternion;
-		FlowCanvas.Nodes.SwitchValue<UnityEngine.Keyframe> FlowCanvas_Nodes_SwitchValue_UnityEngine_Keyframe;
-		FlowCanvas.Nodes.SwitchValue<UnityEngine.Bounds> FlowCanvas_Nodes_SwitchValue_UnityEngine_Bounds;
-		FlowCanvas.Nodes.SwitchValue<UnityEngine.Color> FlowCanvas_Nodes_SwitchValue_UnityEngine_Color;
-		FlowCanvas.Nodes.SwitchValue<UnityEngine.Rect> FlowCanvas_Nodes_SwitchValue_UnityEngine_Rect;
-		FlowCanvas.Nodes.SwitchValue<UnityEngine.ContactPoint> FlowCanvas_Nodes_SwitchValue_UnityEngine_ContactPoint;
-		FlowCanvas.Nodes.SwitchValue<UnityEngine.ContactPoint2D> FlowCanvas_Nodes_SwitchValue_UnityEngine_ContactPoint2D;
-		FlowCanvas.Nodes.SwitchValue<UnityEngine.RaycastHit> FlowCanvas_Nodes_SwitchValue_UnityEngine_RaycastHit;
-		FlowCanvas.Nodes.SwitchValue<UnityEngine.RaycastHit2D> FlowCanvas_Nodes_SwitchValue_UnityEngine_RaycastHit2D;
-		FlowCanvas.Nodes.SwitchValue<UnityEngine.Ray> FlowCanvas_Nodes_SwitchValue_UnityEngine_Ray;
-		FlowCanvas.Nodes.SwitchValue<UnityEngine.Space> FlowCanvas_Nodes_SwitchValue_UnityEngine_Space;
-		FlowCanvas.Nodes.SwitchValue<UnityEngine.LayerMask> FlowCanvas_Nodes_SwitchValue_UnityEngine_LayerMask;
-
-		FlowCanvas.Nodes.ToArray<System.Boolean> FlowCanvas_Nodes_ToArray_System_Boolean;
-		FlowCanvas.Nodes.ToArray<System.Single> FlowCanvas_Nodes_ToArray_System_Single;
-		FlowCanvas.Nodes.ToArray<System.Int32> FlowCanvas_Nodes_ToArray_System_Int32;
-		FlowCanvas.Nodes.ToArray<UnityEngine.Vector2> FlowCanvas_Nodes_ToArray_UnityEngine_Vector2;
-		FlowCanvas.Nodes.ToArray<UnityEngine.Vector3> FlowCanvas_Nodes_ToArray_UnityEngine_Vector3;
-		FlowCanvas.Nodes.ToArray<UnityEngine.Vector4> FlowCanvas_Nodes_ToArray_UnityEngine_Vector4;
-		FlowCanvas.Nodes.ToArray<UnityEngine.Quaternion> FlowCanvas_Nodes_ToArray_UnityEngine_Quaternion;
-		FlowCanvas.Nodes.ToArray<UnityEngine.Keyframe> FlowCanvas_Nodes_ToArray_UnityEngine_Keyframe;
-		FlowCanvas.Nodes.ToArray<UnityEngine.Bounds> FlowCanvas_Nodes_ToArray_UnityEngine_Bounds;
-		FlowCanvas.Nodes.ToArray<UnityEngine.Color> FlowCanvas_Nodes_ToArray_UnityEngine_Color;
-		FlowCanvas.Nodes.ToArray<UnityEngine.Rect> FlowCanvas_Nodes_ToArray_UnityEngine_Rect;
-		FlowCanvas.Nodes.ToArray<UnityEngine.ContactPoint> FlowCanvas_Nodes_ToArray_UnityEngine_ContactPoint;
-		FlowCanvas.Nodes.ToArray<UnityEngine.ContactPoint2D> FlowCanvas_Nodes_ToArray_UnityEngine_ContactPoint2D;
-		FlowCanvas.Nodes.ToArray<UnityEngine.RaycastHit> FlowCanvas_Nodes_ToArray_UnityEngine_RaycastHit;
-		FlowCanvas.Nodes.ToArray<UnityEngine.RaycastHit2D> FlowCanvas_Nodes_ToArray_UnityEngine_RaycastHit2D;
-		FlowCanvas.Nodes.ToArray<UnityEngine.Ray> FlowCanvas_Nodes_ToArray_UnityEngine_Ray;
-		FlowCanvas.Nodes.ToArray<UnityEngine.Space> FlowCanvas_Nodes_ToArray_UnityEngine_Space;
-		FlowCanvas.Nodes.ToArray<UnityEngine.LayerMask> FlowCanvas_Nodes_ToArray_UnityEngine_LayerMask;
-
-		FlowCanvas.Nodes.ToList<System.Boolean> FlowCanvas_Nodes_ToList_System_Boolean;
-		FlowCanvas.Nodes.ToList<System.Single> FlowCanvas_Nodes_ToList_System_Single;
-		FlowCanvas.Nodes.ToList<System.Int32> FlowCanvas_Nodes_ToList_System_Int32;
-		FlowCanvas.Nodes.ToList<UnityEngine.Vector2> FlowCanvas_Nodes_ToList_UnityEngine_Vector2;
-		FlowCanvas.Nodes.ToList<UnityEngine.Vector3> FlowCanvas_Nodes_ToList_UnityEngine_Vector3;
-		FlowCanvas.Nodes.ToList<UnityEngine.Vector4> FlowCanvas_Nodes_ToList_UnityEngine_Vector4;
-		FlowCanvas.Nodes.ToList<UnityEngine.Quaternion> FlowCanvas_Nodes_ToList_UnityEngine_Quaternion;
-		FlowCanvas.Nodes.ToList<UnityEngine.Keyframe> FlowCanvas_Nodes_ToList_UnityEngine_Keyframe;
-		FlowCanvas.Nodes.ToList<UnityEngine.Bounds> FlowCanvas_Nodes_ToList_UnityEngine_Bounds;
-		FlowCanvas.Nodes.ToList<UnityEngine.Color> FlowCanvas_Nodes_ToList_UnityEngine_Color;
-		FlowCanvas.Nodes.ToList<UnityEngine.Rect> FlowCanvas_Nodes_ToList_UnityEngine_Rect;
-		FlowCanvas.Nodes.ToList<UnityEngine.ContactPoint> FlowCanvas_Nodes_ToList_UnityEngine_ContactPoint;
-		FlowCanvas.Nodes.ToList<UnityEngine.ContactPoint2D> FlowCanvas_Nodes_ToList_UnityEngine_ContactPoint2D;
-		FlowCanvas.Nodes.ToList<UnityEngine.RaycastHit> FlowCanvas_Nodes_ToList_UnityEngine_RaycastHit;
-		FlowCanvas.Nodes.ToList<UnityEngine.RaycastHit2D> FlowCanvas_Nodes_ToList_UnityEngine_RaycastHit2D;
-		FlowCanvas.Nodes.ToList<UnityEngine.Ray> FlowCanvas_Nodes_ToList_UnityEngine_Ray;
-		FlowCanvas.Nodes.ToList<UnityEngine.Space> FlowCanvas_Nodes_ToList_UnityEngine_Space;
-		FlowCanvas.Nodes.ToList<UnityEngine.LayerMask> FlowCanvas_Nodes_ToList_UnityEngine_LayerMask;
 
 		FlowCanvas.Nodes.TryGetValue<System.Boolean> FlowCanvas_Nodes_TryGetValue_System_Boolean;
 		FlowCanvas.Nodes.TryGetValue<System.Single> FlowCanvas_Nodes_TryGetValue_System_Single;
@@ -1594,5 +1461,5 @@ namespace ParadoxNotion.Internal{
 	}
 }
 
-//1102 Types | 306 Methods spoofed
+//976 Types | 306 Methods spoofed
 #pragma warning restore 0219, 0168, 0612

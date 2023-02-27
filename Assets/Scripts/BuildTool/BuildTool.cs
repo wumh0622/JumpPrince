@@ -48,7 +48,7 @@ public class BuildTool
             idx++;
         }
 
-        string fileName = "ProjectLab_"  + (isDev ? "DevBuild" : "Shipping") + "_Windows" + "_" + PlayerSettings.bundleVersion;
+        string fileName = "JumpPrince_"  + (isDev ? "DevBuild" : "Shipping") + "_Windows" + "_" + PlayerSettings.bundleVersion;
 
         opt.scenes = allScenePath;
         opt.locationPathName = Application.dataPath + "/../Bin/" + fileName + "/JumpPrince.exe";
@@ -87,7 +87,7 @@ public class BuildTool
             idx++;
         }
 
-        string fileName = "ProjectLab_" + (isDev ? "DevBuild" : "Shipping") + "_Mac" + "_" + PlayerSettings.bundleVersion;
+        string fileName = "JumpPrince_" + (isDev ? "DevBuild" : "Shipping") + "_Mac" + "_" + PlayerSettings.bundleVersion;
 
         opt.scenes = allScenePath;
         opt.locationPathName = Application.dataPath + "/../Bin/" + fileName + "/JumpPrince";
@@ -115,6 +115,7 @@ public class BuildTool
             isDev = EditorPrefs.GetBool("DevelopmentBuild");
             version = EditorPrefs.GetString("Version");
         }
+        PlayerSettings.WebGL.memorySize = 64;
         PlayerSettings.bundleVersion = version;
 
         BuildPlayerOptions opt = new BuildPlayerOptions();
@@ -127,7 +128,7 @@ public class BuildTool
             idx++;
         }
 
-        string fileName = "ProjectLab_" + (isDev ? "DevBuild" : "Shipping") + "_WebGL" + "_" + PlayerSettings.bundleVersion;
+        string fileName = "JumpPrince_" + (isDev ? "DevBuild" : "Shipping") + "_WebGL" + "_" + PlayerSettings.bundleVersion;
 
         opt.scenes = allScenePath;
         opt.locationPathName = Application.dataPath + "/../Bin/" + fileName + "/JumpPrince";
