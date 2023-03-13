@@ -1,41 +1,28 @@
-
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class ChangeSceneControl : MonoBehaviour
 {
-    [SerializeField] private GameObject mToLevel2EffectObj = null;
-    [SerializeField] private GameObject mToLevel3EffectObj = null;
+    [SerializeField] private GameObject mEffectObjPos = null;
     [SerializeField] private UnityEngine.UI.Button mErrorBtn = null;
 
-    private IModifyPPEffect[] mToLevel2Effect = null;
-    private IModifyPPEffect[] mToLevel3Effect = null;
-    private IModifyPPEffect mCurEffect = null;
+    private Dictionary<int, EffectContainer> mEffectDic = null;
+    private EffectContainer mCurEffect = null;
 
     private void Awake()
     {
-        mToLevel2Effect = mToLevel2EffectObj.GetComponentsInChildren<IModifyPPEffect>(true);
-        mToLevel3Effect = mToLevel3EffectObj.GetComponentsInChildren<IModifyPPEffect>(true);
-        for (int i = 0; i < mToLevel2Effect.Length; i++)
+        mEffectDic = new Dictionary<int, EffectContainer>();
+        EffectContainer[] aCacheEffects = mEffectObjPos.GetComponentsInChildren<EffectContainer>(true);
+        for (int i = 0; i < aCacheEffects.Length; i++)
         {
-            mToLevel2Effect[i].Init();
+            aCacheEffects[i].Init();
+            mEffectDic.Add(aCacheEffects[i].mLevelIndex, aCacheEffects[i]);
         }
-        for (int i = 0; i < mToLevel3Effect.Length; i++)
-        {
-            mToLevel3Effect[i].Init();
-        }
-        mErrorBtn.onClick.AddListener(mCurFinish);
+        mErrorBtn.onClick.AddListener(CurFinish);
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.F11))
-        {
-            StartChangeScene(2);
-        }
-    }
-
-
-    #region ´ú¸Õ¥Î ¤§«á§R°£
+    #region æ¸¬è©¦ç”¨ ä¹‹å¾Œå¯åˆªé™¤
     public int TestToLevelIndex = 2;
     [ContextMenu("Test")]
     void Test()
@@ -46,47 +33,22 @@ public class ChangeSceneControl : MonoBehaviour
 
     public void StartChangeScene(int iLevel)
     {
-        switch (iLevel)
-        {
-            case (2):
-                StartToLevel(mToLevel2Effect);
-                break;
-            case (3):
-                StartToLevel(mToLevel3Effect);
-                break;
-            default:
-                break;
-        }
+        Assert.IsTrue(mEffectDic.Count != 0 || mEffectDic.ContainsKey(iLevel), $"mEffectDic == null  or mEffectDic NotKey  Key={iLevel}");
+        mCurEffect = mEffectDic[iLevel];
+        ResetData();
+        mCurEffect.ToLevel();
     }
 
-    private void StartToLevel(IModifyPPEffect[] iModule)
+    public void CurFinish()
     {
-        mCurEffect = iModule[0];
-        for (int i = 0; i < iModule.Length - 1; i++)
-        {
-            int aIndex = i;
-            iModule[aIndex].SetNextAction(() => {
-                iModule[aIndex + 1].StartModify();
-                mCurEffect = iModule[aIndex + 1];
-            });
-        }
-        iModule[0].StartModify();
-    }        
-
-    public void mCurFinish()
-    {
+        Assert.IsTrue(mCurEffect != null, "mCurEffect==null");
         mCurEffect.Finish();
+        mCurEffect = null;
     }
 
-    public void ResetData()
+    private void ResetData()
     {
-        for (int i = 0; i < mToLevel2Effect.Length; i++)
-        {
-            mToLevel2Effect[i].ResetData();
-        }
-        for (int i = 0; i < mToLevel3Effect.Length; i++)
-        {
-            mToLevel3Effect[i].ResetData();
-        }
+        Assert.IsTrue(mCurEffect != null, "mCurEffect==null");
+        mCurEffect.ResetData();
     }
 }

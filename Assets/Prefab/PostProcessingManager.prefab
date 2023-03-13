@@ -49,7 +49,7 @@ MonoBehaviour:
   m_ScareAudio: DI-17
   m_MonsterObj: {fileID: 0}
   m_MaskObj: {fileID: 0}
-  m_DelayTime: 3
+  m_DelayTime: 5
   m_BlurDelayTime: 3
   m_ModifyDelay: 3
   m_BlurRadiusStart: 0.16
@@ -82,6 +82,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2050915707238951371}
+  - component: {fileID: 1100470761}
   m_Layer: 0
   m_Name: ChangeSceneEffect_ToLevel3
   m_TagString: Untagged
@@ -107,6 +108,19 @@ Transform:
   m_Father: {fileID: 7896498459489111062}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1100470761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050915707238951370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07cd906fb1dacf429497756c42998fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mLevelIndex: 3
 --- !u!1 &2050915707723324468
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +301,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   objectToActive:
   - {fileID: 0}
 --- !u!1 &7896498458412194682
@@ -431,6 +446,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7896498458630347989}
+  - component: {fileID: 1691382971}
   m_Layer: 0
   m_Name: ChangeSceneEffectObj
   m_TagString: Untagged
@@ -457,6 +473,19 @@ Transform:
   m_Father: {fileID: 7896498459489111062}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1691382971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7896498458630347988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07cd906fb1dacf429497756c42998fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mLevelIndex: 2
 --- !u!1 &7896498459105696115
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,7 +599,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b8aa42152ade5947b235ed17f8d9308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mToLevel2EffectObj: {fileID: 7896498458630347988}
-  mToLevel3EffectObj: {fileID: 2050915707238951370}
+  mEffectObjPos: {fileID: 7896498459489111056}
   mErrorBtn: {fileID: 0}
   TestToLevelIndex: 2
