@@ -11112,11 +11112,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 977809355505074361, guid: 560d29f8e026e4146b865ab6936acf1d, type: 3}
   m_PrefabInstance: {fileID: 237456933}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1008531046 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7896498459489111056, guid: 41a1924eb7affbe4884fa2bbe8dff099, type: 3}
-  m_PrefabInstance: {fileID: 7896498459622270322}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1008631215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12047,24 +12042,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0ee0ff7bf6be1e4489ff5545c6c7624, type: 3}
---- !u!1 &1100470759 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2050915707238951370, guid: 41a1924eb7affbe4884fa2bbe8dff099, type: 3}
-  m_PrefabInstance: {fileID: 7896498459622270322}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1100470761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1100470759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a07cd906fb1dacf429497756c42998fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mLevelIndex: 3
 --- !u!4 &1112238188 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2768178109359450446, guid: a0ee0ff7bf6be1e4489ff5545c6c7624, type: 3}
@@ -15472,7 +15449,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7896498459489111057, guid: 41a1924eb7affbe4884fa2bbe8dff099, type: 3}
   m_PrefabInstance: {fileID: 7896498459622270322}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008531046}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b8aa42152ade5947b235ed17f8d9308, type: 3}
@@ -18127,24 +18104,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0ee0ff7bf6be1e4489ff5545c6c7624, type: 3}
---- !u!1 &1691382969 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7896498458630347988, guid: 41a1924eb7affbe4884fa2bbe8dff099, type: 3}
-  m_PrefabInstance: {fileID: 7896498459622270322}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1691382971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691382969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a07cd906fb1dacf429497756c42998fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mLevelIndex: 2
 --- !u!1001 &1699295655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23694,10 +23653,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1213877528}
     - target: {fileID: 426249470, guid: 41a1924eb7affbe4884fa2bbe8dff099, type: 3}
-      propertyPath: m_DelayTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 426249470, guid: 41a1924eb7affbe4884fa2bbe8dff099, type: 3}
       propertyPath: m_MonsterObj
       value: 
       objectReference: {fileID: 114342021}
@@ -23729,10 +23684,6 @@ PrefabInstance:
       propertyPath: cameraLocate
       value: 
       objectReference: {fileID: 1732768294}
-    - target: {fileID: 7896498457675961950, guid: 41a1924eb7affbe4884fa2bbe8dff099, type: 3}
-      propertyPath: objectToDestory.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7896498457675961950, guid: 41a1924eb7affbe4884fa2bbe8dff099, type: 3}
       propertyPath: objectToActive.Array.data[0]
       value: 
@@ -23769,10 +23720,6 @@ PrefabInstance:
       propertyPath: mErrorBtn
       value: 
       objectReference: {fileID: 693197269}
-    - target: {fileID: 7896498459489111057, guid: 41a1924eb7affbe4884fa2bbe8dff099, type: 3}
-      propertyPath: mEffectObjPos
-      value: 
-      objectReference: {fileID: 1008531046}
     - target: {fileID: 7896498459489111062, guid: 41a1924eb7affbe4884fa2bbe8dff099, type: 3}
       propertyPath: m_RootOrder
       value: 3
